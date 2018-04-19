@@ -6,7 +6,7 @@
             var inited=0;
             
             document.getElementById('share-screen').onclick = function() {
-                
+                this.disabled = true;
                 connection.addStream({
                     screen: true,
                     oneway: true
@@ -102,6 +102,7 @@
             };
 
             connection.onstreamended = function(event) {
+                $('#share-screen'.prop("disabled", false);
                 var mediaElement = document.getElementById(event.streamid);
                 if(mediaElement) {
                     mediaElement.parentNode.removeChild(mediaElement);
