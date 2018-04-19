@@ -102,7 +102,7 @@
             };
 
             connection.onstreamended = function(event) {
-                $('#share-screen'.prop("disabled", false);
+                $('#share-screen').prop("disabled", false);
                 var mediaElement = document.getElementById(event.streamid);
                 if(mediaElement) {
                     mediaElement.parentNode.removeChild(mediaElement);
