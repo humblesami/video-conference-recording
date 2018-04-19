@@ -1,0 +1,4 @@
+// if(!event.stream.isScreen || (event.type == "remote"))
+                // {
+                //     connection.videosContainer.appendChild(mediaElement);
+                // }

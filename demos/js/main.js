@@ -87,9 +87,12 @@
                     width: width,
                     showOnMouseEnter: false
                 });
-                                
-                if(mediaElement.style.width != "1250px")
+                    
+                console.log(event);
+                if(!event.stream.isScreen || event.type == "remote")
+                {
                     connection.videosContainer.appendChild(mediaElement);
+                }
 
                 setTimeout(function() {
                     mediaElement.media.play();
@@ -189,7 +192,7 @@
                 document.getElementById('record-screen').disabled = false;
                 if(inited!=1)
                 {
-                    setTimeout(recordit, 500);                    
+                    setTimeout(recordit, 3000);
                     inited = 1;
                 }
             }
