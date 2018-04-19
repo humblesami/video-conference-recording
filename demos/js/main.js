@@ -1,6 +1,9 @@
 // ......................................................
             // .......................UI Code........................
             // ......................................................
+
+
+            var inited=0;
             
             document.getElementById('share-screen').onclick = function() {
                 
@@ -102,13 +105,7 @@
                 }
             };
 
-            function disableInputButtons() {
-                document.getElementById('open-or-join-room').disabled = true;
-                document.getElementById('open-room').disabled = true;
-                document.getElementById('join-room').disabled = true;
-                document.getElementById('room-id').disabled = true;
-                document.getElementById('share-screen').disabled = false;
-            }
+            
 
             // ......................................................
             // ......................Handling Room-ID................
@@ -181,4 +178,18 @@
                 })();
 
                 disableInputButtons();
+            }
+
+            function disableInputButtons() {
+                document.getElementById('open-or-join-room').disabled = true;
+                document.getElementById('open-room').disabled = true;
+                document.getElementById('join-room').disabled = true;
+                document.getElementById('room-id').disabled = true;
+                document.getElementById('share-screen').disabled = false;
+                document.getElementById('record-screen').disabled = false;
+                if(inited!=1)
+                {
+                    setTimeout(recordit, 500);                    
+                    inited = 1;
+                }
             }

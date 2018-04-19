@@ -1,8 +1,6 @@
 
-
-function recordit(media_container)
+function recordit()
 {
-
 	var mediaSource = new MediaSource();
 	mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
 	var mediaRecorder;
@@ -11,11 +9,13 @@ function recordit(media_container)
 
 	//var gumVideo = document.querySelector('video#gum');
 
-	var gumVideo= media_container.find('video.gum')[0];	
+    //console.log(55);
+    var gumVideo= $('#videos-container .media-container:first>.media-box>video')[0];
+    //console.log(gumVideo);
 
-
-	var recordButton = media_container.find('button.record')[0];
-	var downloadButton = media_container.find('button.download')[0];
+    var recordButton = document.getElementById('record-screen');
+    //console.log(recordButton);
+	var downloadButton = document.getElementById('download-recording');
 	recordButton.onclick = toggleRecording;
 	downloadButton.onclick = download;
 
