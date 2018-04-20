@@ -7,6 +7,7 @@
             
             document.getElementById('share-screen').onclick = function() {
                 this.disabled = true;
+                
                 connection.addStream({
                     screen: true,
                     oneway: true
@@ -42,13 +43,16 @@
             
             // Using getScreenId.js to capture screen from any domain
             // You do NOT need to deploy Chrome Extension YOUR-Self!!
+
             connection.getScreenConstraints = function(callback) {
                 getScreenConstraints(function(error, screen_constraints) {
-                    if (!error) {
+                   if (!error) {
                         screen_constraints = connection.modifyScreenConstraints(screen_constraints);
+                        console.log(screen_constraints);
                         callback(error, screen_constraints);
                         return;
                     }
+                    $('#share-screen').prop("disabled", false);
                     throw error;
                 });
             };
@@ -88,7 +92,7 @@
                     showOnMouseEnter: false
                 });
                     
-                console.log(event);
+                console.log("this is an event",event);
                 if(!event.stream.isScreen || event.type == "remote")
                 {
                     connection.videosContainer.appendChild(mediaElement);
