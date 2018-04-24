@@ -2,6 +2,8 @@
 // MIT License    - www.WebRTC-Experiment.com/licence
 // Documentation  - github.com/muaz-khan/RTCMultiConnection
 
+console.log("this file is working");
+
 module.exports = exports = function(app, socketCallback) {
     // stores all sockets, user-ids, extra-data and connected sockets
     // you can check presence as following:
@@ -93,6 +95,15 @@ module.exports = exports = function(app, socketCallback) {
         }
 
         socket.userid = params.userid;
+
+        socket.on('to server message', function (data) {
+            thatSocket = ?
+            //var toWhome = data.personId;
+            //io.sockets.connected[toWhome].emit('to client message', data + "o teri oye");
+            socket.emit('to client message', data + "o teri oye");
+        });
+
+
         appendUser(socket);
 
         if (autoCloseEntireSession == 'false' && sessionid == socket.userid) {
@@ -102,6 +113,7 @@ module.exports = exports = function(app, socketCallback) {
         socket.on('shift-moderator-control-on-disconnect', function() {
             socket.shiftModerationControlBeforeLeaving = true;
         });
+
 
         socket.on('extra-data-updated', function(extra) {
             try {

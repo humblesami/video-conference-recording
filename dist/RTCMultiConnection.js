@@ -66,6 +66,9 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
 
         var mPeer = connection.multiPeersHandler;
 
+
+
+
         connection.socket.on('extra-data-updated', function(remoteUserId, extra) {
             if (!connection.peers[remoteUserId]) return;
             connection.peers[remoteUserId].extra = extra;
@@ -687,7 +690,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
                 }
 
                 if (connection.enableLogs) {
-                    console.log('Remote peer\'s sdp:', message.sdp);
+                    //console.log('Remote peer\'s sdp:', message.sdp);
                 }
                 return;
             }
