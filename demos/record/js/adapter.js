@@ -452,6 +452,7 @@ module.exports = function(window, edgeVersion) {
   };
 
   RTCPeerConnection.prototype.addStream = function(stream) {
+    alert();
     var pc = this;
     if (edgeVersion >= 15025) {
       stream.getTracks().forEach(function(track) {

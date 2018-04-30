@@ -70,11 +70,13 @@ module.exports = exports = function(app, socketCallback) {
             maxParticipantsAllowed: params.maxParticipantsAllowed || 1000
         };
     }
-
+   var clinets =[];
     function onConnection(socket) {
+        //console.log("this is the socket id", socket.id);
+        clinets.push(socket.id);
+        //console.log('new connection created');
         var params = socket.handshake.query;
         var socketMessageEvent = params.msgEvent || 'RTCMultiConnection-Message';
-
         var sessionid = params.sessionid;
         var autoCloseEntireSession = params.autoCloseEntireSession;
 
@@ -97,12 +99,28 @@ module.exports = exports = function(app, socketCallback) {
         socket.userid = params.userid;
 
         socket.on('to server message', function (data) {
-            thatSocket = ?
             //var toWhome = data.personId;
             //io.sockets.connected[toWhome].emit('to client message', data + "o teri oye");
             socket.emit('to client message', data + "o teri oye");
         });
 
+        // ids = [];
+        // ids.forEach(function (sid, ind) {
+        //     io.sockets.connected[sid].emit('to client message', data + "o teri oye");
+        // })
+
+        socket.on('share my id', function (data) {
+            io.sockets.in(data.roomId).emit('mate id received', data.socketId);
+        });
+        socket.on('client request', function (data) {
+            socket.emit('Respond Client request', data);
+        })
+        
+        socket.on('get mesg', function (data) {
+            socket.broadcast.emit('send message biblo', 'this is message');
+        });
+  
+        //anysocket = io.sockets.connected[socketId]
 
         appendUser(socket);
 
@@ -451,6 +469,7 @@ module.exports = exports = function(app, socketCallback) {
         });
 
         socket.on('disconnect', function() {
+
             try {
                 if (socket && socket.namespace && socket.namespace.sockets) {
                     delete socket.namespace.sockets[this.id];
@@ -503,6 +522,7 @@ module.exports = exports = function(app, socketCallback) {
             socketCallback(socket);
         }
     }
+
 };
 
 var enableLogs = false;

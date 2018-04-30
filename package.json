@@ -52,7 +52,7 @@
     "url": "https://github.com/muaz-khan/RTCMultiConnection/issues"
   },
   "dependencies": {
-    "socket.io": "latest"
+    "socket.io": "^2.1.0"
   },
   "description": "RTCMultiConnection is a WebRTC JavaScript wrapper library runs top over RTCPeerConnection API to support all possible peer-to-peer features.",
   "devDependencies": {

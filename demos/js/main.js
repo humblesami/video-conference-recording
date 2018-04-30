@@ -7,6 +7,7 @@ var isScreenShared = false;
 
 var connection = new RTCMultiConnection();
 connection.enableLogs = false;
+console.log(connection.sessionid, 45);
 
 
 
@@ -128,6 +129,7 @@ $('#remove').click(function () {
 var roomMates = [];
 function isInArray(ar, attr, tofind)
 {
+    console.log(ar,attr,tofind);
     for(i in ar)
     {
         if(ar[i][attr] == tofind[attr])
@@ -139,47 +141,104 @@ function isInArray(ar, attr, tofind)
 }
 
 var mySocket = undefined;
+var roomMates = {};
+var userArray = [];
 connection.onstream = function(event) {
-    if(event.type == "local")
-    {
+ //if(event.type=="remote" && event.stream.isScreen!=true){
+
+    //roomMates[event.userid] = 1;
+    //console.log(event);
+    
+
+
+
+
+    //     var indx = userArray.findIndex(x => x==event.userid);
+    //     if (indx === -1){
+    //         userArray.push(event.userid);
+    //     }
+        //}
+     if(event.type == "local")
+      {
         if(!mySocket)
         {
             mySocket = connection.socket;
+           
+           
             mySocket.on('to client message', function (data) {
                 console.log(data);
             });
+
+            mySocket.on('mate id received', function (data) {
+               // roomMates.push(data)
+            alert("this is also working");
+            });
+            mySocket.on('mate id left', function (data) {
+                //remove from room mates
+            });
+            mySocket.on('Respond Client request', function (data) {
+               console.log("we got everything required");
+            });
+            mySocket.on('receive the message', function (data) {
+                console.log(data)
+             });
+            mySocket.emit('share my id', {
+                socketId : mySocket.id,
+                roomId: connection.sessionid
+            });
+            mySocket.emit('client request',  {
+              userId: event.userid,
+              mySocketId: mySocket.id
+            });
+            
+            mySocket.emit('send message to connected users', {
+                socketId : mySocket.id,
+                roomId: connection.sessionid
+             });
             mySocket.emit('to server message', {thisperson:'fdfdf', message:"me kuch or send kia tha"});
+
+            mySocket.on('send to everyone', function (data) {
+                console.log(data.myId);
+            });
+
+            mySocket.on('send message biblo',function(data){
+                console.log("HUrrah we got this fucking yeahhh !!!");
+            });
         }
     }
+    else
+    {
+        console.log(connection.socket.id);
+        var vsock = connection.socket;
+        mySocket.emit('get mesg', {
+            sid : vsock.id,
+            roomId: connection.sessionid,
+            mesg : "I m here"
+        });
+    }
+    
+    
+
+    
+    
 
     // connection.getAllParticipants().forEach(function (participantId) {
-    //     var peer = connection.peers[participantId];
-    //     if(!peer.onmessage)
-    //     {
-    //         peer.onmessage = function (data) {
-    //             console.log(data);
-    //         }
-    //     }
     //
+    //     var peer = connection.peers[participantId];
     //     if(peer.userid != event.userid)
     //     {
-    //         var peerExists = isInArray(roomMates, 'userid', peer);
+    //         var peerExists = isInArray( , 'userid', peer);
     //         if(!peerExists)
     //         {
-    //             roomMates.push(peer);
-    //             console.log(roomMates);
+    //             roomMates.push(peer.userid);
+    //
     //         }
     //         //roomMates[0].send(peer.userid +" is there");
     //     }
     //
-    //
-    //
-    //  //   var datas = JSON.stringify(peer.channels);
-    //    // console.log(datas);
     // });
 
 
-    cont = event.roomid;
     if(document.getElementById(event.streamid)) {
         var existing = document.getElementById(event.streamid);
         existing.parentNode.removeChild(existing);
@@ -214,7 +273,7 @@ connection.onstream = function(event) {
 
     mediaElement.id = event.streamid;
 };
-
+console.log(userArray);
 connection.onstreamended = function(event) {
     if(event.stream.isScreen) {
         isScreenShared = false;
@@ -276,6 +335,7 @@ if (localStorage.getItem(connection.socketMessageEvent)) {
 } else {
     roomid = connection.token();
 }
+
 document.getElementById('room-id').value = roomid;
 document.getElementById('room-id').onkeyup = function() {
     localStorage.setItem(connection.socketMessageEvent, this.value);
