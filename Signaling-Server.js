@@ -70,6 +70,7 @@ module.exports = exports = function(app, socketCallback) {
             maxParticipantsAllowed: params.maxParticipantsAllowed || 1000
         };
     }
+    var peers = {};
    var clinets =[];
     function onConnection(socket) {
         //console.log("this is the socket id", socket.id);
@@ -97,6 +98,7 @@ module.exports = exports = function(app, socketCallback) {
         }
 
         socket.userid = params.userid;
+        peers[params.userid] = socket.id; //8.6
 
         socket.on('to server message', function (data) {
             //var toWhome = data.personId;
@@ -114,14 +116,14 @@ module.exports = exports = function(app, socketCallback) {
         });
         socket.on('client request', function (data) {
             socket.emit('Respond Client request', data);
-        })
+        });
         
-        socket.on('get mesg', function (data) {
-            socket.broadcast.emit('send message biblo', 'this is message');
+        socket.on('send kar oye', function(data){ //8.6
+            var sokid = peers[data.userid]; //8.6xxxx
+            io.sockets.connected[sokid].emit('chak oye', data.message);
         });
   
         //anysocket = io.sockets.connected[socketId]
-
         appendUser(socket);
 
         if (autoCloseEntireSession == 'false' && sessionid == socket.userid) {
@@ -334,7 +336,9 @@ module.exports = exports = function(app, socketCallback) {
         }
 
         function joinARoom(message) {
+            
             var roomInitiator = listOfUsers[message.remoteUserId];
+            
 
             if (!roomInitiator) {
                 return;
@@ -351,11 +355,15 @@ module.exports = exports = function(app, socketCallback) {
                 }
                 return;
             }
+            //debugger
 
             var inviteTheseUsers = [roomInitiator.socket];
             Object.keys(usersInARoom).forEach(function(key) {
                 inviteTheseUsers.push(usersInARoom[key]);
             });
+
+            //console.log(inviteTheseUsers);
+            //console.log(usersInARoom);
 
             var keepUnique = [];
             inviteTheseUsers.forEach(function(userSocket) {

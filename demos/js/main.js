@@ -4,16 +4,11 @@
 
 var inited=0;
 var isScreenShared = false;
+var mySocket = undefined;
+var roomMates = {};
 
 var connection = new RTCMultiConnection();
 connection.enableLogs = false;
-console.log(connection.sessionid, 45);
-
-
-
-// connection.onmessage = function(event) {
-//     console.log(event);
-// };
 
 
 document.getElementById('share-screen').onclick = function () {
@@ -126,7 +121,7 @@ $('#remove').click(function () {
 //     connection.setup('room-name');
 // };
 
-var roomMates = [];
+
 function isInArray(ar, attr, tofind)
 {
     console.log(ar,attr,tofind);
@@ -140,44 +135,34 @@ function isInArray(ar, attr, tofind)
     return false;
 }
 
-var mySocket = undefined;
-var roomMates = {};
-var userArray = [];
-connection.onstream = function(event) {
- //if(event.type=="remote" && event.stream.isScreen!=true){
 
-    //roomMates[event.userid] = 1;
-    //console.log(event);
-    
+var roomatesdiv = undefined;
+var additional = 0;
+connection.onstream = function(event) {         
 
-
-
-
-    //     var indx = userArray.findIndex(x => x==event.userid);
-    //     if (indx === -1){
-    //         userArray.push(event.userid);
-    //     }
-        //}
-     if(event.type == "local")
-      {
-        if(!mySocket)
+        if(!mySocket && event.type == "local")
         {
-            mySocket = connection.socket;
-           
-           
-            mySocket.on('to client message', function (data) {
+            mySocket = connection.socket;            
+            mySocket.on('chak oye', function(data){                
                 console.log(data);
             });
-
+           
+            mySocket.on('to client message', function (data) {
+                //console.log(data);
+            });
+            
             mySocket.on('mate id received', function (data) {
                // roomMates.push(data)
             alert("this is also working");
             });
+        
+        
+        
             mySocket.on('mate id left', function (data) {
                 //remove from room mates
             });
             mySocket.on('Respond Client request', function (data) {
-               console.log("we got everything required");
+               //console.log("we got everything required");
             });
             mySocket.on('receive the message', function (data) {
                 console.log(data)
@@ -199,25 +184,26 @@ connection.onstream = function(event) {
 
             mySocket.on('send to everyone', function (data) {
                 console.log(data.myId);
-            });
-
-            mySocket.on('send message biblo',function(data){
-                console.log("HUrrah we got this fucking yeahhh !!!");
-            });
+            });                                  
         }
-    }
-    else
-    {
-        console.log(connection.socket.id);
-        var vsock = connection.socket;
-        mySocket.emit('get mesg', {
-            sid : vsock.id,
-            roomId: connection.sessionid,
-            mesg : "I m here"
-        });
-    }
-    
-    
+
+        if(!roomMates[event.userid])
+        {            
+            if(event.userid)
+            {                
+                roomMates[event.userid] = 3;                
+                var newDiv =  document.createElement('div');                
+                
+                btnAdd =document.createElement("button");                
+                btnAdd.innerHTML = event.userid;
+                btnAdd.setAttribute("class", "socketClass");                
+                newDiv.appendChild(btnAdd);
+                                
+                var inputText = document.createElement("INPUT");                
+                newDiv.appendChild(inputText); 
+                roomatesdiv.appendChild(newDiv);                
+            }
+        }
 
     
     
@@ -273,7 +259,7 @@ connection.onstream = function(event) {
 
     mediaElement.id = event.streamid;
 };
-console.log(userArray);
+
 connection.onstreamended = function(event) {
     if(event.stream.isScreen) {
         isScreenShared = false;
@@ -382,4 +368,29 @@ function disableInputButtons() {
         inited = 1;
     }
 }
+
+
+$(function(){
+    $("body").on( "click", ".socketClass", function() {
+        var sockId = $(this).text();
+        var message =  $(this).next().val();            
+        if(!message)
+        {                
+            $(this).next().focus();
+            return;
+        }
+        var datatosend= {
+            userid : sockId,
+            message:message
+        };
+        mySocket.emit('send kar oye', datatosend);
+        $(this).next().val('');
+      });
+
+    var body = document.getElementsByTagName("body")[0];
+    roomatesdiv = document.createElement('div');
+    roomatesdiv.setAttribute("class", "roommates");
+    body.appendChild(roomatesdiv);
+ 
+});
 

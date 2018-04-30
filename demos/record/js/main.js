@@ -12,7 +12,6 @@ function recordit()
     //console.log(55);
     var gumVideo= $('#videos-container .media-container:first>.media-box>video')[0];
     //console.log(gumVideo);
-
     var recordButton = document.getElementById('record-screen');
     //console.log(recordButton);
 	var downloadButton = document.getElementById('download-recording');

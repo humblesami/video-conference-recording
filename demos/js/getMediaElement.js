@@ -242,11 +242,8 @@ function getMediaElement(mediaElement, config) {
     var mediaBox = document.createElement('div');
     mediaBox.className = 'media-box';
     mediaElementContainer.appendChild(mediaBox);
-
     mediaBox.appendChild(mediaElement);
-
     if (!config.width) config.width = (innerWidth / 2) - 50;
-
     mediaElementContainer.style.width = config.width + 'px';
 
     if (config.height) {
@@ -346,11 +343,9 @@ function getAudioElement(mediaElement, config) {
 
     var mediaElementContainer = document.createElement('div');
     mediaElementContainer.className = 'media-container';
-
     var mediaControls = document.createElement('div');
     mediaControls.className = 'media-controls';
     mediaElementContainer.appendChild(mediaControls);
-
     var muteAudio = document.createElement('div');
     muteAudio.className = 'control ' + (config.toggle.has('mute-audio') ? 'unmute-audio selected' : 'mute-audio');
     mediaControls.appendChild(muteAudio);
