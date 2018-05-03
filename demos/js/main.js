@@ -201,6 +201,7 @@ connection.onstream = function(event) {
     if(!mySocket && event.type == "local")
         {
             mySocket = connection.socket;            
+            
             mySocket.on('chak oye', function(data){                
                 console.log(data);
             });
@@ -213,8 +214,10 @@ connection.onstream = function(event) {
                // roomMates.push(data)
             alert("this is also working");
             });
-        
-        
+            
+            mySocket.on('receive-room-message', function(data) {
+                console.log(data);
+            });
         
             mySocket.on('mate id left', function (data) {
                 //remove from room mates
@@ -238,6 +241,10 @@ connection.onstream = function(event) {
                 socketId : mySocket.id,
                 roomId: connection.sessionid
              });
+             
+             mySocket.emit('room-message',{
+                roomId: connection.sessionid,
+            });
             mySocket.emit('to server message', {thisperson:'fdfdf', message:"me kuch or send kia tha"});
 
             mySocket.on('send to everyone', function (data) {
@@ -407,6 +414,7 @@ if(roomid && roomid.length) {
 
     // auto-join-room
     (function reCheckRoomPresence() {
+
         connection.checkPresence(roomid, function(isRoomExists) {
             if(isRoomExists) {
                 connection.join(roomid);

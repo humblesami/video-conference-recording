@@ -119,11 +119,18 @@ module.exports = exports = function(app, socketCallback) {
             socket.emit('Respond Client request', data);
         });
 
+        socket.on('room-message', function(data){
+            roomId = data.roomId;
+           // io.to('"'+roomId+'"').emit('receive-room-message', "party is rocking");
+            socket.emit('receive-room-message', "party is rocking");
+            io.sockets.in(roomId).emit('receive-room-message', "party is rocking");
+           // socket.broadcast.to(roomId).emit('receive-room-message', "party is rocking");
+          });
         socket.on('send kar oye', function(data){ //8.6
             var sokid = peers[data.userid]; //8.6xxxx
             io.sockets.connected[sokid].emit('chak oye', data.message);
         });
-  
+
         //anysocket = io.sockets.connected[socketId]
         appendUser(socket);
 
