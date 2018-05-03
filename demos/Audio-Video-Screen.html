@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-
     <!-- <link rel="stylesheet" href="https://cdn.webrtc-experiment.com/style.css"> -->
-
     <title>Audio+Video+Screen Sharing using RTCMultiConnection</title>
-
     <meta name="description" content="Audio+Video+Screen Sharing using RTCMultiConnection" />
     <meta name="keywords" content="WebRTC,RTCMultiConnection,Demos,Experiments,Samples,Examples" />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
         * {
             word-wrap:break-word;
@@ -37,26 +33,74 @@
             font-size: 16px;
             outline: none;
         }
-
         .make-center {
             text-align: center;
             padding: 5px 10px;
         }
-
+        .message-box{
+            margin-left: 5px;
+            width: 500px;
+        }
         img, input, textarea {
           max-width: 100%
         }
+      <!--
+        .container {
+            border: 2px solid #dedede;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .darker {
+            border-color: #ccc;
+            background-color: #ddd;
+        }
+        .container::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .container img {
+            float: left;
+            max-width: 60px;
+            width: 100%;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+        .container img.right {
+            float: right;
+            margin-left: 20px;
+            margin-right:0;
+        }
+        .time-right {
+            float: right;
+            color: #aaa;
+        }
 
+        .chat-output{ 
+            position: relative;
+            display: flex; flex-direction: column; flex-wrap: wrap; 
+        }
+.chat-output:after, .chat-output:before{
+     display: block; content: ""; clear:both;
+    }
+        .time-left {
+            float: left;
+            color: #999;
+        }
+        -->
         @media all and (max-width: 500px) {
             .fork-left, .fork-right, .github-stargazers {
                 display: none;
             }
         }
-    </style>
+    </style> <script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>
+
+
     <script src="js/jq.js"></script>
     <script src="record/js/main.js"></script>
 </head>
-
 <body>
     <article>
         <section class="experiment">
@@ -71,33 +115,33 @@
                     <button id="record-screen" disabled>Start Recording</button>
 	                <button id="download-recording" disabled>Download</button>
                 <hr>
-
                 <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
             </div>
-
             <div id="videos-container"></div>
         </section>
-
        
-
-        <script src="/dist/RTCMultiConnection.js"></script>
-
-        <!-- custom layout for HTML5 audio/video elements -->
-        <script src="js/getMediaElement.js"></script>
-
-        <!-- socket.io for signaling -->
-        <script src="/socket.io/socket.io.js"></script>
-                
-        <script src="js/getScreenId.js"></script>
-
-        <script src="js/main.js"></script>
-
+        <h2 id="chat-title" >Chat Messages</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" id="input-text-chat" placeholder="Enter Text Chat" >    
+            <button id="share-file" class="btn btn-md btn-primary">Share File</button>
+        </div>
+        
         
 
+        <div id="chat-container">
+            <div id="file-container"></div>
+            <div class="chat-output" id="LinkDisplay" style="display: none;color: black; margin-left: 5px; padding-left: 5px;"></div>
+        </div>
+
+  
+      
+        <script src="/dist/RTCMultiConnection.js"></script>
+        <!-- custom layout for HTML5 audio/video elements -->
+        <script src="js/getMediaElement.js"></script>
+        <!-- socket.io for signaling -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="js/getScreenId.js"></script>
+        <script src="js/main.js"></script>
     </article>
-
-   
-
 </body>
-
 </html>

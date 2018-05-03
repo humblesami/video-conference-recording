@@ -73,6 +73,7 @@ module.exports = exports = function(app, socketCallback) {
     var peers = {};
    var clinets =[];
     function onConnection(socket) {
+        console.log("a new user connected");
         //console.log("this is the socket id", socket.id);
         clinets.push(socket.id);
         //console.log('new connection created');
@@ -117,7 +118,7 @@ module.exports = exports = function(app, socketCallback) {
         socket.on('client request', function (data) {
             socket.emit('Respond Client request', data);
         });
-        
+
         socket.on('send kar oye', function(data){ //8.6
             var sokid = peers[data.userid]; //8.6xxxx
             io.sockets.connected[sokid].emit('chak oye', data.message);
@@ -345,6 +346,7 @@ module.exports = exports = function(app, socketCallback) {
             }
 
             var usersInARoom = roomInitiator.connectedWith;
+            
             var maxParticipantsAllowed = roomInitiator.maxParticipantsAllowed;
 
             if (Object.keys(usersInARoom).length >= maxParticipantsAllowed) {
@@ -361,10 +363,6 @@ module.exports = exports = function(app, socketCallback) {
             Object.keys(usersInARoom).forEach(function(key) {
                 inviteTheseUsers.push(usersInARoom[key]);
             });
-
-            //console.log(inviteTheseUsers);
-            //console.log(usersInARoom);
-
             var keepUnique = [];
             inviteTheseUsers.forEach(function(userSocket) {
                 if (userSocket.userid == socket.userid) return;
@@ -588,6 +586,7 @@ function uncache(jsonFile) {
     });
 }
 
+console.log("this yuy is working");
 function searchCache(jsonFile, callback) {
     var mod = require.resolve(jsonFile);
 

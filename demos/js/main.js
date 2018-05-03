@@ -11,6 +11,7 @@ var connection = new RTCMultiConnection();
 connection.enableLogs = false;
 
 
+
 document.getElementById('share-screen').onclick = function () {
     if (isScreenShared)
     {
@@ -28,6 +29,7 @@ document.getElementById('share-screen').onclick = function () {
 }
 
 document.getElementById('open-room').onclick = function() {
+    $('#chatParent').css('display', 'block');
     disableInputButtons();
     connection.open(document.getElementById('room-id').value, function() {
         showRoomURL(connection.sessionid);
@@ -47,6 +49,58 @@ document.getElementById('open-or-join-room').onclick = function() {
         }
     });
 };
+
+document.getElementById('share-file').onclick = function() {
+    var fileSelector = new FileSelector();
+    fileSelector.selectSingleFile(function(file) {
+        connection.send(file);
+    });
+};
+
+document.getElementById('input-text-chat').onkeyup = function(e) {
+    if (e.keyCode != 13) return;
+    // removing trailing/leading whitespace
+    this.value = this.value.replace(/^\s+|\s+$/g, '');
+    if (!this.value.length) return;
+    connection.send(this.value);
+    appendDIV(this.value);
+    this.value = '';
+};
+
+var chatContainer = document.querySelector('.chat-output');
+var x =1;
+function appendDIV(event) {
+    x= x+ 1;
+    document.getElementById('LinkDisplay').style.display ="block";
+    var div = document.createElement('div');
+    // div.style.border = "groove";
+    // div.style.borderColor ="skyblue";
+    div.style.marginBottom ="30px";
+    div.style.borderRadius ="15px 50px 30px";
+    if(x%2==0){
+        div.style.color ="#616061";  
+        div.style.width ="600px";
+        div.style.cssFloat ="left"
+        div.style.backgroundColor="#ddd";
+        div.style.padding ="10px 100px 10px 25px";
+        
+    }
+    if(x%2!=0){
+        div.style.width ="500px";
+        div.style.marginLeft ="990px";
+        div.style.cssFloat ="right";
+        div.style.color ="white";
+        div.style.padding ="10px 100px 10px 30px";
+       div.style.backgroundColor ="#8a8585";
+    }
+    
+                div.innerHTML = event.data || event;
+                chatContainer.insertBefore(div, chatContainer.firstChild);
+                div.tabIndex = 0;
+                div.focus();
+               document.getElementById('input-text-chat').focus();
+        
+}
 
 // ......................................................
 // ..................RTCMultiConnection Code.............
@@ -76,6 +130,8 @@ connection.socketURL = '/';
 
 connection.socketMessageEvent = 'audio-video-screen-demo';
 
+connection.enableFileSharing = true;
+
 connection.session = {
     audio: true,
     video: true,
@@ -88,6 +144,8 @@ connection.sdpConstraints.mandatory = {
 };
 
 
+connection.onmessage = appendDIV;
+connection.filesContainer = document.getElementById('file-container');
 connection.videosContainer = document.getElementById('videos-container');
 
 
@@ -139,8 +197,8 @@ function isInArray(ar, attr, tofind)
 var roomatesdiv = undefined;
 var additional = 0;
 connection.onstream = function(event) {         
-
-        if(!mySocket && event.type == "local")
+ 
+    if(!mySocket && event.type == "local")
         {
             mySocket = connection.socket;            
             mySocket.on('chak oye', function(data){                
@@ -189,20 +247,21 @@ connection.onstream = function(event) {
 
         if(!roomMates[event.userid])
         {            
-            if(event.userid)
-            {                
-                roomMates[event.userid] = 3;                
-                var newDiv =  document.createElement('div');                
+            // if(event.userid)
+            // {                
+            //     roomMates[event.userid] = 3;                
+            //     var newDiv =  document.createElement('div');                
                 
-                btnAdd =document.createElement("button");                
-                btnAdd.innerHTML = event.userid;
-                btnAdd.setAttribute("class", "socketClass");                
-                newDiv.appendChild(btnAdd);
+            //     btnAdd =document.createElement("button");
+            //     var name = document.getElementById('name');
+            //     btnAdd.innerHTML = event.userid;
+            //     btnAdd.setAttribute("class", "socketClass");                
+            //     newDiv.appendChild(btnAdd);
                                 
-                var inputText = document.createElement("INPUT");                
-                newDiv.appendChild(inputText); 
-                roomatesdiv.appendChild(newDiv);                
-            }
+            //     var inputText = document.createElement("INPUT");
+            //     newDiv.appendChild(inputText); 
+            //     roomatesdiv.appendChild(newDiv);                
+            // }
         }
 
     
@@ -223,7 +282,6 @@ connection.onstream = function(event) {
     //     }
     //
     // });
-
 
     if(document.getElementById(event.streamid)) {
         var existing = document.getElementById(event.streamid);
@@ -248,6 +306,8 @@ connection.onstream = function(event) {
         showOnMouseEnter: false
     });
 
+
+
     if(!event.stream.isScreen || event.type == "remote")
     {
         connection.videosContainer.appendChild(mediaElement);
@@ -259,8 +319,8 @@ connection.onstream = function(event) {
 
     mediaElement.id = event.streamid;
 };
-
-connection.onstreamended = function(event) {
+   
+    connection.onstreamended = function(event) {
     if(event.stream.isScreen) {
         isScreenShared = false;
         //$('#share-screen').prop("disabled", false);
@@ -270,6 +330,9 @@ connection.onstreamended = function(event) {
         mediaElement.parentNode.removeChild(mediaElement);
     }
 };
+
+
+
 
 
 
@@ -292,6 +355,7 @@ function showRoomURL(roomid) {
 
     roomURLsDiv.style.display = 'block';
 }
+
 function checkScreenStatus() {
     connection.getAllParticipants().forEach(function (participantId) {
         var peer = connection.peers[participantId];
@@ -357,6 +421,7 @@ if(roomid && roomid.length) {
 }
 
 function disableInputButtons() {
+
     document.getElementById('open-or-join-room').disabled = true;
     document.getElementById('open-room').disabled = true;
     document.getElementById('join-room').disabled = true;
@@ -368,7 +433,6 @@ function disableInputButtons() {
         inited = 1;
     }
 }
-
 
 $(function(){
     $("body").on( "click", ".socketClass", function() {

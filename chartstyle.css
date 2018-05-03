@@ -1,0 +1,27 @@
+{
+    border: groove skyblue; */
+    border-radius: 15px 50px 30px;
+    color: #616061;
+    margin-bottom: 30px;
+    background: #ddd;
+    padding: 10px 10px 10px 25px;
+
+    width: 400px;
+    float: left;
+}
+
+    {
+        border: none;
+        border-radius: 15px 50px 30px;
+        color: white;
+        margin-bottom: 30px;
+        background: #8a8585;
+        padding: 10px 10px 10px 25px;
+        width: 400px;
+    float: right;
+    margin-right:15px;
+    }
+    
+
+.chat-output{ position: relative;}
+.chat-output:after, .chat-output:before{ display: block; content: ""; clear:both;}
