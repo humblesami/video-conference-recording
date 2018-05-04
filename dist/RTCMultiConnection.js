@@ -4347,6 +4347,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
         };
 
         connection.join = connection.connect = function(remoteUserId, options) {
+            
             connection.sessionid = (remoteUserId ? remoteUserId.sessionid || remoteUserId.remoteUserId || remoteUserId : false) || connection.sessionid;
             connection.sessionid += '';
 

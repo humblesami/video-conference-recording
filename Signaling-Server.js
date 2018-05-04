@@ -1,8 +1,3 @@
-// Muaz Khan      - www.MuazKhan.com
-// MIT License    - www.WebRTC-Experiment.com/licence
-// Documentation  - github.com/muaz-khan/RTCMultiConnection
-
-console.log("this file is working");
 
 module.exports = exports = function(app, socketCallback) {
     // stores all sockets, user-ids, extra-data and connected sockets
@@ -73,10 +68,6 @@ module.exports = exports = function(app, socketCallback) {
     var peers = {};
    var clinets =[];
     function onConnection(socket) {
-        console.log("a new user connected");
-        //console.log("this is the socket id", socket.id);
-        clinets.push(socket.id);
-        //console.log('new connection created');
         var params = socket.handshake.query;
         var socketMessageEvent = params.msgEvent || 'RTCMultiConnection-Message';
         var sessionid = params.sessionid;
@@ -104,6 +95,7 @@ module.exports = exports = function(app, socketCallback) {
         socket.on('to server message', function (data) {
             //var toWhome = data.personId;
             //io.sockets.connected[toWhome].emit('to client message', data + "o teri oye");
+            
             socket.emit('to client message', data + "o teri oye");
         });
 
@@ -119,13 +111,21 @@ module.exports = exports = function(app, socketCallback) {
             socket.emit('Respond Client request', data);
         });
 
+        socket.on('join-room', function(data){
+            socket.join(data.roomId);
+        });
+
         socket.on('room-message', function(data){
-            roomId = data.roomId;
-           // io.to('"'+roomId+'"').emit('receive-room-message', "party is rocking");
-            socket.emit('receive-room-message', "party is rocking");
-            io.sockets.in(roomId).emit('receive-room-message', "party is rocking");
+            
+           roomId = data.roomId;
+            
+            io.sockets.in(roomId).emit('receive-room-message', data.message);
            // socket.broadcast.to(roomId).emit('receive-room-message', "party is rocking");
-          });
+           //io.to(roomId).emit('receive-room-message', "party is rocking");
+           //socket.broadcast.to(roomId).emit('receive-room-message', "party is rocking");
+           //io.sockets.broadcast(roomId)
+           
+        });
         socket.on('send kar oye', function(data){ //8.6
             var sokid = peers[data.userid]; //8.6xxxx
             io.sockets.connected[sokid].emit('chak oye', data.message);
@@ -344,26 +344,21 @@ module.exports = exports = function(app, socketCallback) {
         }
 
         function joinARoom(message) {
-            
             var roomInitiator = listOfUsers[message.remoteUserId];
-            
-
+            socket.join(message.remoteUserId);
             if (!roomInitiator) {
                 return;
             }
-
             var usersInARoom = roomInitiator.connectedWith;
-            
             var maxParticipantsAllowed = roomInitiator.maxParticipantsAllowed;
-
             if (Object.keys(usersInARoom).length >= maxParticipantsAllowed) {
                 socket.emit('room-full', message.remoteUserId);
-
-                if (roomInitiator.connectedWith[socket.userid]) {
+            if (roomInitiator.connectedWith[socket.userid]) {
                     delete roomInitiator.connectedWith[socket.userid];
                 }
                 return;
             }
+            
             //debugger
 
             var inviteTheseUsers = [roomInitiator.socket];
@@ -593,7 +588,6 @@ function uncache(jsonFile) {
     });
 }
 
-console.log("this yuy is working");
 function searchCache(jsonFile, callback) {
     var mod = require.resolve(jsonFile);
 
