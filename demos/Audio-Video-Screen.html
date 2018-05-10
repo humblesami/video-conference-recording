@@ -97,7 +97,6 @@
         }
     </style> <script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>
 
-
     <script src="js/jq.js"></script>
     <script src="record/js/main.js"></script>
 </head>
@@ -106,6 +105,7 @@
         <section class="experiment">
             <div class="make-center">
                 <input type="text" id="room-id" value="abcdef" autocorrect=off autocapitalize=off size=20>
+               
                 <button id="open-room">Open Room</button>
                 <button id="join-room">Join Room</button>
                 <button id="open-or-join-room">Auto Open Or Join Room</button>
@@ -117,7 +117,15 @@
                 <hr>
                 <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
             </div>
-            <div id="videos-container"></div>
+            <h2 id="room-exists" style="display: none">Room already exists</h2>
+          
+            <div id="allroom">
+                <h2>All Rooms</h2>
+            </div>
+             <div id="videos-container"></div>
+
+
+
         </section>
        
         <h2 id="chat-title" >Chat Messages</h2>

@@ -1,1 +1,4 @@
-{}
+{
+	"Wed09May2018134627GMT": "{\n\t\"0\": \"on-socketMessageEvent\",\n\t\"1\": \"ReferenceError: alert is not defined\\n    at joinARoom (/home/muhammad-awais/Jsrecorder/video-conference-recording/Signaling-Server.js:362:13)\\n    at Socket.<anonymous> (/home/muhammad-awais/Jsrecorder/video-conference-recording/Signaling-Server.js:426:25)\\n    at Socket.emit (events.js:180:13)\\n    at /home/muhammad-awais/Jsrecorder/video-conference-recording/node_modules/socket.io/lib/socket.js:527:12\\n    at process._tickCallback (internal/process/next_tick.js:176:11)\"\n}",
+	"Wed09May2018134712GMT": "{\n\t\"0\": \"on-socketMessageEvent\",\n\t\"1\": \"ReferenceError: alert is not defined\\n    at joinARoom (/home/muhammad-awais/Jsrecorder/video-conference-recording/Signaling-Server.js:362:13)\\n    at Socket.<anonymous> (/home/muhammad-awais/Jsrecorder/video-conference-recording/Signaling-Server.js:426:25)\\n    at Socket.emit (events.js:180:13)\\n    at /home/muhammad-awais/Jsrecorder/video-conference-recording/node_modules/socket.io/lib/socket.js:527:12\\n    at process._tickCallback (internal/process/next_tick.js:176:11)\"\n}"
+}

@@ -66,7 +66,7 @@ module.exports = exports = function(app, socketCallback) {
         };
     }
     var peers = {};
-   var clinets =[];
+   var roomsArray ={};
     function onConnection(socket) {
         var params = socket.handshake.query;
         var socketMessageEvent = params.msgEvent || 'RTCMultiConnection-Message';
@@ -83,7 +83,6 @@ module.exports = exports = function(app, socketCallback) {
         // temporarily disabled
         if (!!listOfUsers[params.userid]) {
             params.dontUpdateUserId = true;
-
             var useridAlreadyTaken = params.userid;
             params.userid = (Math.random() * 1000).toString().replace('.', '');
             socket.emit('userid-already-taken', useridAlreadyTaken, params.userid);
@@ -114,18 +113,17 @@ module.exports = exports = function(app, socketCallback) {
         socket.on('join-room', function(data){
             socket.join(data.roomId);
         });
-
+        socket.on('broadcast to everyone', function(data){
+            displayRoom(data);
+        });
+        socket.emit("getrooms", roomsArray);
+      
+       
         socket.on('room-message', function(data){
             
            roomId = data.roomId;
-            
             io.sockets.in(roomId).emit('receive-room-message', data.message);
-           // socket.broadcast.to(roomId).emit('receive-room-message', "party is rocking");
-           //io.to(roomId).emit('receive-room-message', "party is rocking");
-           //socket.broadcast.to(roomId).emit('receive-room-message', "party is rocking");
-           //io.sockets.broadcast(roomId)
-           
-        });
+           });
         socket.on('send kar oye', function(data){ //8.6
             var sokid = peers[data.userid]; //8.6xxxx
             io.sockets.connected[sokid].emit('chak oye', data.message);
@@ -342,8 +340,27 @@ module.exports = exports = function(app, socketCallback) {
                 pushLogs('onMessageCallback', e);
             }
         }
+         function displayRoom(data){
+            console.log("in function array ", roomsArray);
+            if(!roomsArray[data]){
+                console.log("in inf");
+                var sockid = socket.id;
+                roomsArray[data] = [];
+                roomsArray[data].push(sockid);
+                roomsArray[data].push("abcd");
+                io.emit('server room created', roomsArray);
+            }
+            else{
+                console.log("else", roomsArray);
+               socket.emit("room exist", {
+                    message :"room already exists",
+                    data:roomsArray
+                });
+            } 
+         }
 
         function joinARoom(message) {
+            displayRoom(message.remoteUserId);
             var roomInitiator = listOfUsers[message.remoteUserId];
             socket.join(message.remoteUserId);
             if (!roomInitiator) {

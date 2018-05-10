@@ -10,8 +10,6 @@ var roomMates = {};
 var connection = new RTCMultiConnection();
 connection.enableLogs = false;
 
-
-
 document.getElementById('share-screen').onclick = function () {
     if (isScreenShared)
     {
@@ -29,12 +27,16 @@ document.getElementById('share-screen').onclick = function () {
 }
 
 var RoomID = '';
+var roomsArray = {};
 
 document.getElementById('open-room').onclick = function() {
     
     $('#chatParent').css('display', 'block');
     disableInputButtons();
     connection.open(document.getElementById('room-id').value, function() {
+        var roomName = document.getElementById('room-id').value;
+            
+            mySocket.emit('broadcast to everyone', roomName);
         mySocket.emit('join-room', {
             roomId: RoomID
         });
@@ -44,9 +46,9 @@ document.getElementById('open-room').onclick = function() {
 
 document.getElementById('join-room').onclick = function() {
     disableInputButtons();
-    connection.socket.emit('join-room', {
-        roomId: RoomID
-    });
+    // connection.socket.emit('join-room', {
+    //     roomId: RoomID
+    // });
     connection.join(document.getElementById('room-id').value);
 };
 
@@ -133,8 +135,6 @@ function appendDIV(event) {
 // ......................................................
 
 
-
-
 // Using getScreenId.js to capture screen from any domain
 // You do NOT need to deploy Chrome Extension YOUR-Self!!
 
@@ -144,7 +144,7 @@ connection.getScreenConstraints = function(callback) {
             screen_constraints = connection.modifyScreenConstraints(screen_constraints);
             console.log(screen_constraints);
             callback(error, screen_constraints);
-            return;
+            return;console.log(data);
         }
         $('#share-screen').prop("disabled", false);
         throw error;
@@ -169,42 +169,16 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveVideo: true
 };
 
-
 connection.onmessage = appendDIV;
 connection.filesContainer = document.getElementById('file-container');
 connection.videosContainer = document.getElementById('videos-container');
 
-
-
 var cont = false;
 $('#remove').click(function () {
-
-});
-
 //chat
 
 
-// connection.onopen = function(e) { /* e.userid */ };
-// connection.onmessage = function(message, userid) {};
-//
-// // share data with all connected users
-// connection.send(file || data || 'text message');
-//
-// // share data between two unique users (i.e. direct messages)
-// connection.channels['user-id'].send(file || data || 'text-message');
-
-// custom signaling gateway
-// connection.openSignalingChannel = function(callback) {
-//     return io.connect().on('message', callback);
-// };
-
-// check existing connections
-// connection.check('room-name');
-
-// document.getElementById('setup-new-connection').onclick = function() {
-//     connection.setup('room-name');
-// };
-
+});
 
 function isInArray(ar, attr, tofind)
 {
@@ -219,10 +193,10 @@ function isInArray(ar, attr, tofind)
     return false;
 }
 
-
 var roomatesdiv = undefined;
 var additional = 0;
-connection.onstream = function(event) {         
+connection.onstream = function(event) {
+    alert("in the stream");
  
     if(!mySocket && event.type == "local")
         {
@@ -233,12 +207,44 @@ connection.onstream = function(event) {
                 console.log(data);
             });
            
+             mySocket.on("server room created", function(data){
+                for (var key in data) {
+                    var btn = document.createElement("BUTTON");
+                    btn.setAttribute("id", "allroomsid");
+                    var span = document.createElement("SPAN");
+
+                    var roomsDiv = document.getElementById("allroom");
+                    btn.innerHTML = key;
+                    span.innerHTML = "click to join room";
+                    var lnbreak = document.createElement("br");
+                    roomsDiv.appendChild(btn);
+                    roomsDiv.appendChild(span);
+                    roomsDiv.appendChild(lnbreak);
+                }
+               });
+            
+            mySocket.on('room exist', function(data){
+                document.getElementById("room-exists").style.display = "block";
+                // for (var key in data.data) {
+                //     var btn = document.createElement("BUTTON");
+                //     btn.setAttribute("id", "join-room");
+                //     var span = document.createElement("SPAN");
+                //     var roomsDiv = document.getElementById("allroom");
+                //     btn.innerHTML =key;
+                //     span.innerHTML = "click to join room";
+                //     var lnbreak = document.createElement("br");
+                //     roomsDiv.appendChild(btn);
+                //    roomsDiv.appendChild(span);
+                //    roomsDiv.appendChild(lnbreak);
+                // }
+            });
+            
             mySocket.on('to client message', function (data) {
                 //console.log(data);
             });
             
             mySocket.on('mate id received', function (data) {
-               // roomMates.push(data)
+               
             
             });
             
@@ -269,10 +275,7 @@ connection.onstream = function(event) {
                 socketId : mySocket.id,
                 roomId: connection.sessionid
              });
-             //  mySocket.emit('room-message',{
-                
-            //     roomId: connection.sessionid,
-            // });
+             
             mySocket.emit('to server message', {thisperson:'fdfdf', message:"me kuch or send kia tha"});
 
             mySocket.on('send to everyone', function (data) {
@@ -284,7 +287,7 @@ connection.onstream = function(event) {
         {            
             // if(event.userid)
             // {                
-            //     roomMates[event.userid] = 3;                
+            //     roomMates[kevent.userid] = 3;                
             //     var newDiv =  document.createElement('div');                
                 
             //     btnAdd =document.createElement("button");
@@ -341,8 +344,6 @@ connection.onstream = function(event) {
         showOnMouseEnter: false
     });
 
-
-
     if(!event.stream.isScreen || event.type == "remote")
     {
         connection.videosContainer.appendChild(mediaElement);
@@ -365,11 +366,6 @@ connection.onstream = function(event) {
         mediaElement.parentNode.removeChild(mediaElement);
     }
 };
-
-
-
-
-
 
 // ......................................................
 // ......................Handling Room-ID................
@@ -404,7 +400,7 @@ function checkScreenStatus() {
 (function() {
     var params = {},
         r = /([^&=]+)=?([^&]*)/g;
-
+        
     function d(s) {
         return decodeURIComponent(s.replace(/\+/g, ' '));
     }
@@ -492,6 +488,6 @@ $(function(){
     roomatesdiv = document.createElement('div');
     roomatesdiv.setAttribute("class", "roommates");
     body.appendChild(roomatesdiv);
- 
+    
 });
 
