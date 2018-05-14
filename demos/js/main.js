@@ -8,7 +8,14 @@ var mySocket = undefined;
 var roomMates = {};
 
 var connection = new RTCMultiConnection();
+mySocket = connection.socket;
 connection.enableLogs = false;
+
+
+// connection.socket.emit("get rooms");
+// connection.socket.on("get all rooms", function (data) {
+//    alert("we goot");
+// });
 
 document.getElementById('share-screen').onclick = function () {
     if (isScreenShared)
@@ -30,21 +37,22 @@ var RoomID = '';
 var roomsArray = {};
 
 document.getElementById('open-room').onclick = function() {
-    
+
     $('#chatParent').css('display', 'block');
     disableInputButtons();
     connection.open(document.getElementById('room-id').value, function() {
         var roomName = document.getElementById('room-id').value;
-            
-            mySocket.emit('broadcast to everyone', roomName);
+        $('#av-room').val(connection.sessionid);
+        mySocket.emit('broadcast to everyone', roomName);
         mySocket.emit('join-room', {
             roomId: RoomID
         });
-        showRoomURL(connection.sessionid);        
+        showRoomURL(connection.sessionid);
     });
 };
 
 document.getElementById('join-room').onclick = function() {
+    alert("clicked");
     disableInputButtons();
     // connection.socket.emit('join-room', {
     //     roomId: RoomID
@@ -86,13 +94,15 @@ document.getElementById('input-text-chat').onkeyup = function(e) {
     if (!this.value.length) return;
     //connection.send(this.value);
     //appendDIV(this.value);
-    
+    // alert(connection.sessionid);
+    console.log("socket id",mySocket.id);
+
     mySocket.emit('room-message',{
-       message : this.value,
-       roomId: connection.sessionid 
+        message : this.value,
+        roomId: connection.sessionid
     });
-    
-   this.value = '';
+
+    this.value = '';
 };
 
 var chatContainer = document.querySelector('.chat-output');
@@ -106,12 +116,12 @@ function appendDIV(event) {
     div.style.marginBottom ="30px";
     div.style.borderRadius ="15px 50px 30px";
     if(x%2==0){
-        div.style.color ="#616061";  
+        div.style.color ="#616061";
         div.style.width ="600px";
         div.style.cssFloat ="left"
         div.style.backgroundColor="#ddd";
         div.style.padding ="10px 100px 10px 25px";
-        
+
     }
     if(x%2!=0){
         div.style.width ="500px";
@@ -119,15 +129,15 @@ function appendDIV(event) {
         div.style.cssFloat ="right";
         div.style.color ="white";
         div.style.padding ="10px 100px 10px 30px";
-       div.style.backgroundColor ="#8a8585";
+        div.style.backgroundColor ="#8a8585";
     }
-    
-                div.innerHTML = event.data || event;
-                chatContainer.insertBefore(div, chatContainer.firstChild);
-                div.tabIndex = 0;
-                div.focus();
-               document.getElementById('input-text-chat').focus();
-        
+
+    div.innerHTML = event.data || event;
+    chatContainer.insertBefore(div, chatContainer.firstChild);
+    div.tabIndex = 0;
+    div.focus();
+    document.getElementById('input-text-chat').focus();
+
 }
 
 // ......................................................
@@ -196,114 +206,112 @@ function isInArray(ar, attr, tofind)
 var roomatesdiv = undefined;
 var additional = 0;
 connection.onstream = function(event) {
-    alert("in the stream");
- 
+
+
     if(!mySocket && event.type == "local")
-        {
-            
-            mySocket = connection.socket;            
-            
-            mySocket.on('chak oye', function(data){                
-                console.log(data);
-            });
-           
-             mySocket.on("server room created", function(data){
-                for (var key in data) {
-                    var btn = document.createElement("BUTTON");
-                    btn.setAttribute("id", "allroomsid");
-                    var span = document.createElement("SPAN");
+    {
 
-                    var roomsDiv = document.getElementById("allroom");
-                    btn.innerHTML = key;
-                    span.innerHTML = "click to join room";
-                    var lnbreak = document.createElement("br");
-                    roomsDiv.appendChild(btn);
-                    roomsDiv.appendChild(span);
-                    roomsDiv.appendChild(lnbreak);
-                }
-               });
-            
-            mySocket.on('room exist', function(data){
+        mySocket = connection.socket;
+
+
+
+        mySocket.on('chak oye', function(data){
+            console.log(data);
+        });
+
+        mySocket.on("server room created", function(data){
+
+            var mast = JSON.parse(JSON.stringify(data));
+            var html = '';
+            $('#allroom').html('<p>Click to join room</p>');
+            for (var key in mast) {
+                html += "<button id='joining-room'>" + key + "</button><p>Click to join room</p><br>";
+            }
+            $('#allroom').html(html);
+
+        });
+
+        mySocket.on('room exist', function(data){
+            if(data.message){
                 document.getElementById("room-exists").style.display = "block";
-                // for (var key in data.data) {
-                //     var btn = document.createElement("BUTTON");
-                //     btn.setAttribute("id", "join-room");
-                //     var span = document.createElement("SPAN");
-                //     var roomsDiv = document.getElementById("allroom");
-                //     btn.innerHTML =key;
-                //     span.innerHTML = "click to join room";
-                //     var lnbreak = document.createElement("br");
-                //     roomsDiv.appendChild(btn);
-                //    roomsDiv.appendChild(span);
-                //    roomsDiv.appendChild(lnbreak);
-                // }
-            });
-            
-            mySocket.on('to client message', function (data) {
-                //console.log(data);
-            });
-            
-            mySocket.on('mate id received', function (data) {
-               
-            
-            });
-            
-            mySocket.on('receive-room-message', function(data) {
-                
-                document.getElementById('chat-display').innerHTML +=data;
-            });
-        
-            mySocket.on('mate id left', function (data) {
-                //remove from room mates
-            });
-            mySocket.on('Respond Client request', function (data) {
-               //console.log("we got everything required");
-            });
-            mySocket.on('receive the message', function (data) {
-                console.log(data)
-             });
-            mySocket.emit('share my id', {
-                socketId : mySocket.id,
-                roomId: connection.sessionid
-            });
-            mySocket.emit('client request',  {
-              userId: event.userid,
-              mySocketId: mySocket.id
-            });
-            
-            mySocket.emit('send message to connected users', {
-                socketId : mySocket.id,
-                roomId: connection.sessionid
-             });
-             
-            mySocket.emit('to server message', {thisperson:'fdfdf', message:"me kuch or send kia tha"});
+            }
+            var mast = JSON.parse(JSON.stringify(data.data));
+            var html = '';
+            $('#allroom').html('<p>Click to join room</p>');
+            for (var key in mast) {
+                html += "<button style='margin-left: 5px' id='joining-room'>"+key+"</button><br>";
+            }
+            $('#allroom').html(html);
+        });
 
-            mySocket.on('send to everyone', function (data) {
-                console.log(data.myId);
-            });                                  
-        }
 
-        if(!roomMates[event.userid])
-        {            
-            // if(event.userid)
-            // {                
-            //     roomMates[kevent.userid] = 3;                
-            //     var newDiv =  document.createElement('div');                
-                
-            //     btnAdd =document.createElement("button");
-            //     var name = document.getElementById('name');
-            //     btnAdd.innerHTML = event.userid;
-            //     btnAdd.setAttribute("class", "socketClass");                
-            //     newDiv.appendChild(btnAdd);
-                                
-            //     var inputText = document.createElement("INPUT");
-            //     newDiv.appendChild(inputText); 
-            //     roomatesdiv.appendChild(newDiv);                
-            // }
-        }
+        mySocket.on('to client message', function (data) {
+            //console.log(data);
+        });
 
-    
-    
+        mySocket.on('mate id received', function (data) {
+
+
+        });
+
+        mySocket.on('receive-room-message', function(data) {
+                alert(data);
+                console.log(data);
+                $('#chat-display').html(data);
+            // document.getElementById('chat-display').innerHTML =data;
+        });
+
+        mySocket.on('mate id left', function (data) {
+            //remove from room mates
+        });
+        mySocket.on('Respond Client request', function (data) {
+            //console.log("we got everything required");
+        });
+        mySocket.on('receive the message', function (data) {
+            console.log(data)
+        });
+        mySocket.emit('share my id', {
+            socketId : mySocket.id,
+            roomId: connection.sessionid
+        });
+        mySocket.emit('client request',  {
+            userId: event.userid,
+            mySocketId: mySocket.id
+        });
+
+        mySocket.emit('send message to connected users', {
+            socketId : mySocket.id,
+            roomId: connection.sessionid
+        });
+
+        mySocket.emit('to server message', {thisperson:'fdfdf', message:"me kuch or send kia tha"});
+
+        mySocket.on('send to everyone', function (data) {
+            console.log(data.myId);
+        });
+    }
+
+    if(!roomMates[event.userid])
+    {
+        // if(event.userid)
+        // {
+        //     roomMates[kevent.userid] = 3;
+        //     var newDiv =  document.createElement('div');
+
+        //     btnAdd =document.createElement("button");
+        //     var name = document.getElementById('name');
+        //     btnAdd.innerHTML = event.userid;
+        //     btnAdd.setAttribute("class", "socketClass");
+        //     newDiv.appendChild(btnAdd);
+
+        //     var inputText = document.createElement("INPUT");
+        //     newDiv.appendChild(inputText);
+        //     roomatesdiv.appendChild(newDiv);
+        // }
+    }
+
+
+
 
     // connection.getAllParticipants().forEach(function (participantId) {
     //
@@ -325,6 +333,7 @@ connection.onstream = function(event) {
         var existing = document.getElementById(event.streamid);
         existing.parentNode.removeChild(existing);
     }
+
     if(event.stream.isScreen) {
         isScreenShared = event.userid;
         console.log(isScreenShared);
@@ -355,8 +364,8 @@ connection.onstream = function(event) {
 
     mediaElement.id = event.streamid;
 };
-   
-    connection.onstreamended = function(event) {
+
+connection.onstreamended = function(event) {
     if(event.stream.isScreen) {
         isScreenShared = false;
         //$('#share-screen').prop("disabled", false);
@@ -400,7 +409,7 @@ function checkScreenStatus() {
 (function() {
     var params = {},
         r = /([^&=]+)=?([^&]*)/g;
-        
+
     function d(s) {
         return decodeURIComponent(s.replace(/\+/g, ' '));
     }
@@ -456,7 +465,7 @@ function disableInputButtons() {
 
     document.getElementById('open-or-join-room').disabled = true;
     document.getElementById('open-room').disabled = true;
-    document.getElementById('join-room').disabled = true;
+    // document.getElementById('join-room').disabled = true;
     document.getElementById('room-id').disabled = true;
     document.getElementById('share-screen').disabled = false;
     document.getElementById('record-screen').disabled = false;
@@ -467,12 +476,35 @@ function disableInputButtons() {
 }
 
 $(function(){
+
+    $("body").on( "click", "#joining-room", function() {
+        connection.leave(connection.sessionid);
+        connection.session = {
+            audio: true,
+            video: true,
+            data: true
+        };
+        connection.mediaConstraints = {
+            audio: false,
+            video: false
+        };
+        connection.sdpConstraints.mandatory = {
+            OfferToReceiveAudio: true,
+            OfferToReceiveVideo: true
+        };
+        connection.dontCaptureUserMedia = true;
+        console.log(1);
+        connection.join($(this).text());
+        console.log("2",connection.socket.id);
+        $('#av-room').val(connection.sessionid);
+
+    });
     RoomID = $('#room-id').val();
     $("body").on( "click", ".socketClass", function() {
         var sockId = $(this).text();
-        var message =  $(this).next().val();            
+        var message =  $(this).next().val();
         if(!message)
-        {                
+        {
             $(this).next().focus();
             return;
         }
@@ -482,12 +514,12 @@ $(function(){
         };
         mySocket.emit('send kar oye', datatosend);
         $(this).next().val('');
-      });
+    });
 
     var body = document.getElementsByTagName("body")[0];
     roomatesdiv = document.createElement('div');
     roomatesdiv.setAttribute("class", "roommates");
     body.appendChild(roomatesdiv);
-    
+
 });
 
