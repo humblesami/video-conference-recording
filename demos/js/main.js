@@ -52,8 +52,8 @@ document.getElementById('open-room').onclick = function() {
 };
 
 document.getElementById('join-room').onclick = function() {
-    alert("clicked");
-    disableInputButtons();
+    
+    // disableInputButtons();
     // connection.socket.emit('join-room', {
     //     roomId: RoomID
     // });
@@ -184,11 +184,6 @@ connection.filesContainer = document.getElementById('file-container');
 connection.videosContainer = document.getElementById('videos-container');
 
 var cont = false;
-$('#remove').click(function () {
-//chat
-
-
-});
 
 function isInArray(ar, attr, tofind)
 {
@@ -207,20 +202,20 @@ var roomatesdiv = undefined;
 var additional = 0;
 connection.onstream = function(event) {
 
-
+  
     if(!mySocket && event.type == "local")
     {
-
+      
         mySocket = connection.socket;
 
-
-
+        console.log("onstream socket id", mySocket.id);
+      
         mySocket.on('chak oye', function(data){
             console.log(data);
         });
 
         mySocket.on("server room created", function(data){
-
+           console.log(data);
             var mast = JSON.parse(JSON.stringify(data));
             var html = '';
             $('#allroom').html('<p>Click to join room</p>');
@@ -478,26 +473,26 @@ function disableInputButtons() {
 $(function(){
 
     $("body").on( "click", "#joining-room", function() {
-        connection.leave(connection.sessionid);
+        console.log(mySocket.id);
+        mySocket.emit("change the room",{
+            "room" : $(this).text(),
+            "leave":$('#room-id').val(),
+            sockid: mySocket.id
+           });
         connection.session = {
             audio: true,
             video: true,
             data: true
-        };
-        connection.mediaConstraints = {
-            audio: false,
-            video: false
         };
         connection.sdpConstraints.mandatory = {
             OfferToReceiveAudio: true,
             OfferToReceiveVideo: true
         };
         connection.dontCaptureUserMedia = true;
-        console.log(1);
         connection.join($(this).text());
         console.log("2",connection.socket.id);
         $('#av-room').val(connection.sessionid);
-
+        
     });
     RoomID = $('#room-id').val();
     $("body").on( "click", ".socketClass", function() {

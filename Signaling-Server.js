@@ -58,12 +58,12 @@ module.exports = exports = function(app, socketCallback) {
         }
 
         listOfUsers[socket.userid] = {
-            socket: socket,
-            connectedWith: {},
-            isPublic: false, // means: isPublicModerator
-            extra: extra || {},
-            maxParticipantsAllowed: params.maxParticipantsAllowed || 1000
-        };
+            'socket': [socket.id]
+            // connectedWith: {},
+            // isPublic: false, // means: isPublicModerator
+            // extra: extra || {},
+            // maxParticipantsAllowed: params.maxParticipantsAllowed || 1000
+    };
     }
     var peers = {};
    var roomsArray ={};
@@ -87,7 +87,7 @@ module.exports = exports = function(app, socketCallback) {
             params.userid = (Math.random() * 1000).toString().replace('.', '');
             socket.emit('userid-already-taken', useridAlreadyTaken, params.userid);
         }
-
+   
         socket.userid = params.userid;
         peers[params.userid] = socket.id; //8.6
 
@@ -116,7 +116,9 @@ module.exports = exports = function(app, socketCallback) {
         socket.on('broadcast to everyone', function(data){
             displayRoom(data, 0);
         });
-
+       
+        io.emit("server room created", roomsArray);
+    
        // socket.on("get rooms", roomsArray, function () {
        //     socket.emit("get all rooms", roomsArray);
        // });
@@ -141,7 +143,21 @@ module.exports = exports = function(app, socketCallback) {
         socket.on('shift-moderator-control-on-disconnect', function() {
             socket.shiftModerationControlBeforeLeaving = true;
         });
-
+        
+        socket.on("change the room", function(data1) {
+            
+             console.log(listOfUsers);
+            for(key in listOfUsers){
+                 for(data in listOfUsers[key]){
+                   if(listOfUsers[key][data]==data1.sockid){
+                    delete listOfUsers[key][data];
+                       listOfUsers[data1.room]['socket'].push(data1.sockid);
+                }
+                 }
+            }
+        console.log("finally", listOfUsers);
+                           
+        });
 
         socket.on('extra-data-updated', function(extra) {
             try {
@@ -216,22 +232,25 @@ module.exports = exports = function(app, socketCallback) {
         });
 
         socket.on('changed-uuid', function(newUserId, callback) {
+          
             callback = callback || function() {};
 
             if (params.dontUpdateUserId) {
                 delete params.dontUpdateUserId;
                 return;
             }
-
-            try {
+           
+              try {
                 if (listOfUsers[socket.userid] && listOfUsers[socket.userid].socket.userid == socket.userid) {
+                   
                     if (newUserId === socket.userid) return;
-
+                    console.log("wprking");
                     var oldUserId = socket.userid;
                     listOfUsers[newUserId] = listOfUsers[oldUserId];
                     listOfUsers[newUserId].socket.userid = socket.userid = newUserId;
+                    listOfUsers[oldUserId]
                     delete listOfUsers[oldUserId];
-
+                    console.log(listOfUsers);
                     callback();
                     return;
                 }
@@ -350,7 +369,6 @@ module.exports = exports = function(app, socketCallback) {
 
                 roomsArray[data] = [];
                 roomsArray[data].push(sockid);
-                roomsArray[data].push("abcd");
                 io.emit('server room created', roomsArray);
             }
             else if(check==1){
@@ -369,7 +387,6 @@ module.exports = exports = function(app, socketCallback) {
         function joinARoom(message) {
             displayRoom(message.remoteUserId, 1);
             var roomInitiator = listOfUsers[message.remoteUserId];
-            console.log("socket id with room on join", socket.userid, message.remoteUserId);
             socket.join(message.remoteUserId);
             if (!roomInitiator) {
                 return;

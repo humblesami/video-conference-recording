@@ -4248,7 +4248,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
             var oldUserId = connection.userid;
             connection.userid = connection.sessionid = localUserid || connection.sessionid;
             connection.userid += '';
-
+            console.log("session", connection.session);
             connection.isInitiator = true;
 
             connectSocket(function() {
@@ -4258,7 +4258,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
                     connection.becomePublicModerator();
                 }
             });
-
+             
             if (isData(connection.session)) {
                 if (typeof isPublicModerator === 'function') {
                     isPublicModerator();
