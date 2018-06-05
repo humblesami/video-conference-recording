@@ -64,8 +64,7 @@ module.exports = exports = function(app, socketCallback) {
             extra: extra || {},
             maxParticipantsAllowed: params.maxParticipantsAllowed || 1000
     };
-    
-    console.log(listOfUsers);
+  
     }
     var peers = {};
    var roomsArray ={};
@@ -125,15 +124,6 @@ module.exports = exports = function(app, socketCallback) {
        // socket.on("get rooms", roomsArray, function () {
        //     socket.emit("get all rooms", roomsArray);
        // });
-       
-       socket.on("leaveRoom", function(data){
-           console.log(listOfUsers);
-         for(rooms in listOfUsers){
-             if(listOfUsers[rooms].connectedWith==data.leaveid){
-                 delete listOfUsers[rooms].connectedWith;
-             }
-         }
-       });
 
         socket.on('room-message', function(data){
              console.log(socket.id);
@@ -394,7 +384,6 @@ module.exports = exports = function(app, socketCallback) {
          }
 
         function joinARoom(message) {
-            console.log(listOfUsers);
             // var room_users = io.sockets.clients(message.remoteUserId);
             displayRoom(message.remoteUserId, 1);
             var roomInitiator = listOfUsers[message.remoteUserId];

@@ -37,16 +37,18 @@ var RoomID = '';
 var roomsArray = {};
 
 document.getElementById('open-room').onclick = function() {
-
+     
     $('#chatParent').css('display', 'block');
     disableInputButtons();
     connection.open(document.getElementById('room-id').value, function() {
+       
         var roomName = document.getElementById('room-id').value;
         $('#av-room').val(connection.sessionid);
+        
         mySocket.emit('broadcast to everyone', roomName);
-        mySocket.emit('join-room', {
-            roomId: RoomID
-        });
+        // mySocket.emit('join-room', {
+        //     roomId: RoomID
+        // });
         showRoomURL(connection.sessionid);
     });
 };
@@ -83,7 +85,7 @@ document.getElementById('share-file').onclick = function() {
 //     if (!this.value.length) return;
 //     connection.send(this.value);
 //     appendDIV(this.value);
-//     this.value = '';
+//     this.value = '';kljjklhgjhggh
 // };
 
 //copy
@@ -94,8 +96,8 @@ document.getElementById('input-text-chat').onkeyup = function(e) {
     if (!this.value.length) return;
     //connection.send(this.value);
     //appendDIV(this.value);
-    // alert(connection.sessionid);
-    console.log("socket id",mySocket.id);
+    //alert(connection.sessionid);
+    
 
     mySocket.emit('room-message',{
         message : this.value,
@@ -215,12 +217,12 @@ connection.onstream = function(event) {
         });
 
         mySocket.on("server room created", function(data){
-           console.log(data);
+          
             var mast = JSON.parse(JSON.stringify(data));
             var html = '';
             $('#allroom').html('<p>Click to join room</p>');
             for (var key in mast) {
-                html += "<button id='joining-room'>" + key + "</button><p>Click to join room</p><br>";
+                html += "<button class='joining-room'>" + key + "</button><p>Click to join room</p><br>";
             }
             $('#allroom').html(html);
 
@@ -234,7 +236,7 @@ connection.onstream = function(event) {
             var html = '';
             $('#allroom').html('<p>Click to join room</p>');
             for (var key in mast) {
-                html += "<button style='margin-left: 5px' id='joining-room'>"+key+"</button><br>";
+                html += "<button style='margin-left: 5px' class='joining-room'>"+key+"</button><br>";
             }
             $('#allroom').html(html);
         });
@@ -250,8 +252,7 @@ connection.onstream = function(event) {
         });
 
         mySocket.on('receive-room-message', function(data) {
-                alert(data);
-                console.log(data);
+        
                 $('#chat-display').html(data);
             // document.getElementById('chat-display').innerHTML =data;
         });
@@ -472,27 +473,32 @@ function disableInputButtons() {
 
 $(function(){
 
-    $("body").on( "click", "#joining-room", function() {
-        console.log(mySocket.id);
-        mySocket.emit("change the room",{
-            "room" : $(this).text(),
-            "leave":$('#room-id').val(),
-            sockid: mySocket.id
-           });
-        connection.session = {
+    $("body").on("click", ".joining-room", function() {
+        alert(connection.sessionid);
+        mySocket.emit("leaveRoom", {
+            "leaveid":$(this).text(),
+            "socket":connection.socket.id
+        });
+        connection.join($(this).text());
+       $('#av-room').val(connection.sessionid);
+            connection.session = {
             audio: true,
             video: true,
             data: true
         };
+    
+        connection.mediaConstraints = {
+            audio: false,
+            video: false
+        };
+    
         connection.sdpConstraints.mandatory = {
             OfferToReceiveAudio: true,
             OfferToReceiveVideo: true
         };
+       
         connection.dontCaptureUserMedia = true;
-        connection.join($(this).text());
-        console.log("2",connection.socket.id);
-        $('#av-room').val(connection.sessionid);
-        
+     
     });
     RoomID = $('#room-id').val();
     $("body").on( "click", ".socketClass", function() {

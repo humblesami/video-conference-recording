@@ -4,9 +4,31 @@
     <list default="true" id="201754e8-e6d8-43aa-8ed8-41f4a498a926" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Signaling-Server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Signaling-Server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/Audio-Video-Screen.html" beforeDir="false" afterPath="$PROJECT_DIR$/demos/Audio-Video-Screen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/Audio-Video-Screen.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/demos/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demos/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/demos/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/RTCMultiConnection.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/RTCMultiConnection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/RTCMultiConnection.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/has-binary2/History.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/has-binary2/History.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/has-binary2/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/has-binary2/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/has-binary2/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/has-binary2/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.dev.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.dev.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.slim.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.slim.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.slim.dev.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.slim.dev.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.slim.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.slim.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.slim.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/dist/socket.io.slim.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/lib/socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/lib/socket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io-client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io/lib/socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io/lib/socket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/socket.io/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/socket.io/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,23 +42,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demos/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="480" column="47" selection-start-line="480" selection-start-column="47" selection-end-line="480" selection-end-column="47" />
+            <state relative-caret-position="230">
+              <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server.js">
+      <file leaf-file-name="RTCMultiConnection.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/RTCMultiConnection.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+            <state relative-caret-position="1587">
+              <caret line="69" column="82" selection-start-line="69" selection-start-column="82" selection-end-line="69" selection-end-column="82" />
             </state>
           </provider>
         </entry>
@@ -44,29 +67,50 @@
       <file leaf-file-name="Signaling-Server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Signaling-Server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8360">
-              <caret line="440" column="53" selection-start-line="440" selection-start-column="53" selection-end-line="440" selection-end-column="53" />
+            <state relative-caret-position="14697">
+              <caret line="639" column="16" selection-start-line="639" selection-start-column="16" selection-end-line="639" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Audio-Video-Screen.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html">
+      <file leaf-file-name="Audio-Video-Screen.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Audio-Video-Screen.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="144" column="14" lean-forward="true" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="14" />
+            <state relative-caret-position="3289">
+              <caret line="143" column="7" selection-start-line="143" selection-start-column="7" selection-end-line="143" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demos/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1840">
+              <caret line="80" column="70" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="socket.io.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/socket.io.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="33488">
+              <caret line="1456" column="29" selection-start-line="1456" selection-start-column="29" selection-end-line="1456" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>room exist</find>
-      <find>broadcast to everyone</find>
-      <find>server room created</find>
-      <find>displayRoom</find>
       <find>connection.so</find>
       <find>mySocket</find>
       <find>show existing rooms</find>
@@ -93,6 +137,10 @@
       <find>connection.join</find>
       <find>onleave</find>
       <find>leave</find>
+      <find>signaling</find>
+      <find>socket</find>
+      <find>maxpart</find>
+      <find>maxParticipantsAllowed</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -108,10 +156,16 @@
         <option value="$PROJECT_DIR$/demos/record/js/main.js" />
         <option value="$PROJECT_DIR$/demos/record/js/adapter.js" />
         <option value="$PROJECT_DIR$/sample.txt" />
-        <option value="$PROJECT_DIR$/dist/RTCMultiConnection.js" />
+        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/demos/Audio-Video-Screen.html" />
+        <option value="$PROJECT_DIR$/debug.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/demos/index.html" />
         <option value="$PROJECT_DIR$/Signaling-Server.js" />
         <option value="$PROJECT_DIR$/demos/js/main.js" />
+        <option value="$PROJECT_DIR$/dist/socket.js" />
+        <option value="$PROJECT_DIR$/Audio-Video-Screen.html" />
+        <option value="$PROJECT_DIR$/dist/RTCMultiConnection.js" />
       </list>
     </option>
   </component>
@@ -160,11 +214,6 @@
               <item name="video-conference-recording" type="462c0819:PsiDirectoryNode" />
               <item name="demos" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="video-conference-recording" type="b2602c69:ProjectViewProjectNode" />
-              <item name="video-conference-recording" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -172,16 +221,22 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="rtc&#9;FILE&#9;file:///home/muhammad-awais/Jsrecorder/video-conference-recording/dist/RTCMultiConnection.js" />
+    <property name="SearchEverywhereHistoryKey" value="socket.io&#9;FILE&#9;file:///home/muhammad-awais/Jsrecorder/video-conference-recording/node_modules/socket.io&#10;socket&#9;FILE&#9;file:///home/muhammad-awais/Jsrecorder/video-conference-recording/node_modules/socket.io/lib/socket.js&#10;confi&#9;ACTION&#9;WebDeployment.Configuration&#10;rtc&#9;FILE&#9;file:///home/muhammad-awais/Jsrecorder/video-conference-recording/dist/RTCMultiConnection.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../socketChat" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Audio-Video-Screen.html" />
     <property name="node.js.detected.package.prettier" value="true" />
     <property name="node.js.path.for.package.prettier" value="project" />
     <property name="node.js.selected.package.prettier" value="" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -194,6 +249,38 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.Audio-Video-Screen.html">
+    <configuration default="true" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" port="9001" />
+    <configuration name="Audio-Video-Screen.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/video-conference-recording/Audio-Video-Screen.html" />
+    <configuration name="debug.js" type="JavascriptDebugType" factoryName="JavaScript Debug" uri="http://localhost:63342/video-conference-recording/debug.js" />
+    <configuration name="Signaling-Server.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/Signaling-Server.js" working-dir="$PROJECT_DIR$" />
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="Signaling-Server.js" working-dir="$PROJECT_DIR$" />
+    <configuration name="main.js" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="demos/js/main.js" working-dir="$PROJECT_DIR$">
+      <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSStartBrowserRunConfigurationExtension">
+        <browser with-js-debugger="true" />
+      </EXTENSION>
+    </configuration>
+    <configuration name="server.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="server.js" working-dir="$PROJECT_DIR$">
+      <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSStartBrowserRunConfigurationExtension">
+        <browser with-js-debugger="true" />
+      </EXTENSION>
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.debug.js" />
+      <item itemvalue="Node.js.main.js" />
+      <item itemvalue="JavaScript Debug.Audio-Video-Screen.html" />
+      <item itemvalue="Node.js.server.js" />
+      <item itemvalue="Node.js.Signaling-Server.js" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.Audio-Video-Screen.html" />
+        <item itemvalue="Node.js.Signaling-Server.js" />
+        <item itemvalue="Node.js.server.js" />
+        <item itemvalue="Node.js.main.js" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -215,57 +302,55 @@
       <workItem from="1525875688577" duration="3630000" />
       <workItem from="1525932897990" duration="31419000" />
       <workItem from="1526020681070" duration="304000" />
+      <workItem from="1526902125041" duration="1085000" />
+      <workItem from="1527055843117" duration="2298000" />
+      <workItem from="1527059148407" duration="1741000" />
+      <workItem from="1527061121264" duration="1607000" />
+      <workItem from="1527062797738" duration="857000" />
+      <workItem from="1527063762927" duration="13814000" />
+      <workItem from="1527142633473" duration="2917000" />
+      <workItem from="1527146671868" duration="17018000" />
+      <workItem from="1527228491192" duration="135000" />
+      <workItem from="1527229622084" duration="7137000" />
+      <workItem from="1527244316249" duration="620000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100828000" />
+    <option name="totallyTimeSpent" value="150057000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21439749" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1796875" />
+      <window_info anchor="bottom" id="TODO" order="5" weight="0.32753164" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info id="Grunt " order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="Grunt " order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3290735" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.16773163" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3280255" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.37816456" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.07278481" />
       <window_info active="true" anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.24980783" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info id="npm" order="0" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="6" />
-      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.22521138" />
-      <window_info id="Structure" order="4" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info id="Grunt " order="1" side_tool="true" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -280,17 +365,52 @@
           <url>file://$PROJECT_DIR$/demos/record/js/adapter.js</url>
           <line>448</line>
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/demos/js/main.js</url>
+          <line>482</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="41" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/demos/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9082">
+          <caret line="480" column="47" selection-start-line="480" selection-start-column="47" selection-end-line="480" selection-end-column="47" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Signaling-Server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8360">
+          <caret line="440" column="53" selection-start-line="440" selection-start-column="53" selection-end-line="440" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html" />
     <entry file="file://$PROJECT_DIR$/demos/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9120">
           <caret line="480" column="47" lean-forward="true" selection-start-line="480" selection-start-column="47" selection-end-line="480" selection-end-column="47" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -302,19 +422,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2261">
-          <caret line="119" column="18" lean-forward="true" selection-start-line="119" selection-start-column="18" selection-end-line="119" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html" />
     <entry file="file://$PROJECT_DIR$/demos/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4218">
           <caret line="222" column="17" selection-start-line="222" selection-start-column="17" selection-end-line="222" selection-end-column="17" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -332,17 +447,12 @@
           <caret line="280" selection-start-line="280" selection-end-line="280" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2147">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html" />
     <entry file="file://$PROJECT_DIR$/demos/js/getMediaElement.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="912">
@@ -356,6 +466,7 @@
           <caret line="79" column="27" lean-forward="true" selection-start-line="79" selection-start-column="27" selection-end-line="79" selection-end-column="27" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -374,19 +485,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1387">
-          <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html" />
     <entry file="file://$PROJECT_DIR$/demos/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3135">
           <caret line="165" column="44" selection-start-line="165" selection-start-column="35" selection-end-line="165" selection-end-column="44" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -404,6 +510,7 @@
           <caret line="165" column="44" selection-start-line="165" selection-start-column="35" selection-end-line="165" selection-end-column="44" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -421,6 +528,7 @@
           <caret line="151" column="9" lean-forward="true" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -445,6 +553,7 @@
           <caret line="131" lean-forward="true" selection-start-line="116" selection-end-line="131" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -463,19 +572,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1387">
-          <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html" />
     <entry file="file://$PROJECT_DIR$/demos/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2147">
           <caret line="113" column="38" selection-start-line="113" selection-start-column="38" selection-end-line="113" selection-end-column="38" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -494,13 +598,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1387">
-          <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html" />
     <entry file="file://$PROJECT_DIR$/demos/Video-Conferencing.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -512,20 +610,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/RTCMultiConnection.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="15" column="1981" selection-start-line="15" selection-start-column="1981" selection-end-line="15" selection-end-column="1981" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demos/record/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -544,41 +628,100 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample.txt" />
-    <entry file="file://$PROJECT_DIR$/dist/RTCMultiConnection.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/socket.io/lib/namespace.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-223">
-          <caret line="4348" column="68" selection-start-line="4348" selection-start-column="56" selection-end-line="4348" selection-end-column="68" />
+        <state relative-caret-position="108">
+          <caret line="180" column="13" selection-start-line="180" selection-start-column="13" selection-end-line="180" selection-end-column="13" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html" />
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-537">
+          <caret line="256" selection-start-line="256" selection-end-line="256" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/socket.io/lib/socket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3610">
+          <caret line="119" column="10" lean-forward="true" selection-start-line="119" selection-start-column="10" selection-end-line="119" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/js/clientio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-18">
+          <caret line="6" column="3754" selection-start-line="6" selection-start-column="3754" selection-end-line="6" selection-end-column="3754" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1055">
+          <caret line="121" selection-start-line="121" selection-end-line="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/js/jq.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="4990" column="64" selection-start-line="4990" selection-start-column="64" selection-end-line="4990" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/record/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="41" column="33" lean-forward="true" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/RTCMultiConnection.min.js" />
     <entry file="file://$PROJECT_DIR$/Signaling-Server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8360">
-          <caret line="440" column="53" selection-start-line="440" selection-start-column="53" selection-end-line="440" selection-end-column="53" />
+        <state relative-caret-position="14697">
+          <caret line="639" column="16" selection-start-line="639" selection-start-column="16" selection-end-line="639" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/socket.io.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33488">
+          <caret line="1456" column="29" selection-start-line="1456" selection-start-column="29" selection-end-line="1456" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Audio-Video-Screen.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3289">
+          <caret line="143" column="7" selection-start-line="143" selection-start-column="7" selection-end-line="143" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1840">
+          <caret line="80" column="70" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/RTCMultiConnection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1587">
+          <caret line="69" column="82" selection-start-line="69" selection-start-column="82" selection-end-line="69" selection-end-column="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demos/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="480" column="47" selection-start-line="480" selection-start-column="47" selection-end-line="480" selection-end-column="47" />
+        <state relative-caret-position="230">
+          <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demos/Audio-Video-Screen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="144" column="14" lean-forward="true" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="14" />
         </state>
       </provider>
     </entry>

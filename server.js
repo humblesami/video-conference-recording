@@ -29,17 +29,17 @@ var autoRebootServerOnFailure = false;
 
 
 // skip/remove this try-catch block if you're NOT using "config.json"
-try {
-    var config = require(resolveURL('./config.json'));
+// try {
+//     var config = require(resolveURL('./config.json'));
 
-    if ((config.port || '').toString() !== '9001') {
-        port = parseInt(config.port);
-    }
+//     if ((config.port || '').toString() !== '9001') {
+//         port = parseInt(config.port);
+//     }
 
-    if ((config.autoRebootServerOnFailure || '').toString() !== true) {
-        autoRebootServerOnFailure = true;
-    }
-} catch (e) {}
+//     if ((config.autoRebootServerOnFailure || '').toString() !== true) {
+//         autoRebootServerOnFailure = true;
+//     }
+// } catch (e) {}
 
 // You don't need to change anything below
 
@@ -205,10 +205,10 @@ function runServer() {
 
             var socketURL = (isUseHTTPs ? 'https' : 'http') + '://' + e.address + ':' + e.port + '/';
 
-            console.log('------------------------------');
-            console.log('\x1b[31m%s\x1b[0m ', 'Unable to listen on port: ' + e.port);
-            console.log('\x1b[31m%s\x1b[0m ', socketURL + ' is already in use. Please kill below processes using "kill PID".');
-            console.log('------------------------------');
+            // console.log('------------------------------');
+            // console.log('\x1b[31m%s\x1b[0m ', 'Unable to listen on port: ' + e.port);
+            // console.log('\x1b[31m%s\x1b[0m ', socketURL + ' is already in use. Please kill below processes using "kill PID".');
+            // console.log('------------------------------');
 
             foo = new cmd_exec('lsof', ['-n', '-i4TCP:9001'],
                 function(me, data) {
@@ -232,23 +232,23 @@ function runServer() {
 
         var domainURL = (isUseHTTPs ? 'https' : 'http') + '://' + addr.address + ':' + addr.port + '/';
 
-        console.log('------------------------------');
+        // console.log('------------------------------');
 
-        console.log('socket.io is listening at:');
-        console.log('\x1b[31m%s\x1b[0m ', '\t' + domainURL);
+        // console.log('socket.io is listening at:');
+        // console.log('\x1b[31m%s\x1b[0m ', '\t' + domainURL);
 
-        console.log('\n');
+        // console.log('\n');
 
-        console.log('Your web-browser (HTML file) MUST set this line:');
-        console.log('\x1b[31m%s\x1b[0m ', 'connection.socketURL = "' + domainURL + '";');
+        // console.log('Your web-browser (HTML file) MUST set this line:');
+        // console.log('\x1b[31m%s\x1b[0m ', 'connection.socketURL = "' + domainURL + '";');
 
         if (addr.address != 'localhost' && !isUseHTTPs) {
             console.log('Warning:');
             console.log('\x1b[31m%s\x1b[0m ', 'Please set isUseHTTPs=true to make sure audio,video and screen demos can work on Google Chrome as well.');
         }
 
-        console.log('------------------------------');
-        console.log('Need help? http://bit.ly/2ff7QGk');
+        //console.log('------------------------------');
+        //console.log('Need help? http://bit.ly/2ff7QGk');
     });
 
     require('./Signaling-Server.js')(app, function(socket) {

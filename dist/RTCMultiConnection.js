@@ -56,6 +56,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
         }
 
         try {
+            console.log(connection.socketURL + parameters);
             connection.socket = io(connection.socketURL + parameters);
         } catch (e) {
             connection.socket = io.connect(connection.socketURL + parameters, connection.socketOptions);
@@ -65,9 +66,6 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
         connection.socket.isIO = true;
 
         var mPeer = connection.multiPeersHandler;
-
-
-
 
         connection.socket.on('extra-data-updated', function(remoteUserId, extra) {
             if (!connection.peers[remoteUserId]) return;
@@ -4123,6 +4121,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
         };
 
         mPeer.onNegotiationNeeded = function(message, remoteUserId, callback) {
+            
             connectSocket(function() {
                 connection.socket.emit(connection.socketMessageEvent, 'password' in message ? message : {
                     remoteUserId: message.remoteUserId || remoteUserId,
@@ -4248,7 +4247,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
             var oldUserId = connection.userid;
             connection.userid = connection.sessionid = localUserid || connection.sessionid;
             connection.userid += '';
-            console.log("session", connection.session);
+
             connection.isInitiator = true;
 
             connectSocket(function() {
@@ -4258,7 +4257,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
                     connection.becomePublicModerator();
                 }
             });
-             
+
             if (isData(connection.session)) {
                 if (typeof isPublicModerator === 'function') {
                     isPublicModerator();
@@ -4347,6 +4346,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
         };
 
         connection.join = connection.connect = function(remoteUserId, options) {
+            
             connection.sessionid = (remoteUserId ? remoteUserId.sessionid || remoteUserId.remoteUserId || remoteUserId : false) || connection.sessionid;
             connection.sessionid += '';
 
@@ -4525,27 +4525,27 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
         };
 
         function beforeUnload(shiftModerationControlOnLeave, dontCloseSocket) {
+            console.log(connection.peers);
             if (!connection.closeBeforeUnload) {
                 return;
             }
-
+            
             if (connection.isInitiator === true) {
                 connection.dontMakeMeModerator();
             }
-
+             
             connection.peers.getAllParticipants().forEach(function(participant) {
+                
                 mPeer.onNegotiationNeeded({
                     userLeft: true
                 }, participant);
-
                 if (connection.peers[participant] && connection.peers[participant].peer) {
                     connection.peers[participant].peer.close();
                 }
-
                 delete connection.peers[participant];
             });
-
             if (!dontCloseSocket) {
+               
                 connection.closeSocket();
             }
 
@@ -4800,7 +4800,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
         };
 
         connection.close = connection.disconnect = connection.leave = function() {
-            beforeUnload(false, true);
+           beforeUnload(false, true);
         };
 
         connection.closeEntireSession = function(callback) {

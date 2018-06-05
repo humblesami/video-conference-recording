@@ -96,16 +96,14 @@
             }
         }
     </style> <script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>
-
-    <script src="js/jq.js"></script>
-    <script src="record/js/main.js"></script>
+    <script src="demos/js/jq.js"></script>
+    <script src="demos/record/js/main.js"></script>
 </head>
 <body>
     <article>
         <section class="experiment">
             <div class="make-center">
                 <input type="text" id="room-id" value="abcdef" autocorrect=off autocapitalize=off size=20>
-               
                 <button id="open-room">Open Room</button>
                 <button id="join-room">Join Room</button>
                 <button id="open-or-join-room">Auto Open Or Join Room</button>
@@ -119,40 +117,28 @@
                 <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
             </div>
             <h2 id="room-exists" style="display: none">Room already exists</h2>
-          
             <div id="allroom">
                 <h2>All Rooms</h2>
             </div>
              <div id="videos-container"></div>
-
-
-
         </section>
-       
         <h2 id="chat-title" >Chat Messages</h2>
         <div class="form-group">
             <input type="text" class="form-control" id="input-text-chat" placeholder="Enter Text Chat" >    
             <button id="share-file" class="btn btn-md btn-primary">Share File</button>
         </div>
-        
-        
-
         <div id="chat-container">
             <div id="file-container"></div>
             <div class="chat-output" id="LinkDisplay" style="display: none;color: black; margin-left: 5px; padding-left: 5px;"></div>
         </div>
         <div id="chat-display">
-              
         </div>
-  
-      
-        <script src="/dist/RTCMultiConnection.js"></script>
-        <!-- custom layout for HTML5 audio/video elements -->
-        <script src="js/getMediaElement.js"></script>
-        <!-- socket.io for signaling -->
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="js/getScreenId.js"></script>
-        <script src="js/main.js"></script>
+        <!--<script src="demos/js/clientio.js"></script>-->
+        <script src="dist/socket.io.js"></script>
+        <script src="dist/RTCMultiConnection.js"></script>
+        <script src="demos/js/getMediaElement.js"></script>
+        <script src="demos/js/getScreenId.js"></script>
+        <script src="demos/js/main.js"></script>
     </article>
 </body>
 </html>
