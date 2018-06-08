@@ -35,8 +35,9 @@ module.exports = exports = function(app, socketCallback) {
 
     // to secure your socket.io usage: (via: docs/tips-tricks.md)
     // io.set('origins', 'https://domain.com');
-
+    var uid;
     function appendUser(socket) {
+         
         var alreadyExist = listOfUsers[socket.userid];
         var extra = {};
 
@@ -56,15 +57,20 @@ module.exports = exports = function(app, socketCallback) {
                 extra = params.extra;
             }
         }
+       if(!listOfUsers[socket.userid]){
+            uid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);  
+            listOfUsers[socket.userid] = {};                    
+            listOfUsers[socket.userid][uid] = socket.id;
+            socket.join(socket.userid);
+         
+     }
+     else{
+        
+        uid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);  
+        listOfUsers[socket.userid][uid] = socket.id;
+        socket.join(socket.userid);
+     }
 
-        listOfUsers[socket.userid] = {
-            'socket': socket,
-            connectedWith: {},
-            isPublic: false, // means: isPublicModerator
-            extra: extra || {},
-            maxParticipantsAllowed: params.maxParticipantsAllowed || 1000
-    };
-    
     console.log(listOfUsers);
     }
     var peers = {};
@@ -82,7 +88,7 @@ module.exports = exports = function(app, socketCallback) {
             }
             ScalableBroadcast(socket, params.maxRelayLimitPerUser);
         }
-
+        console.log("params", params)
         // temporarily disabled
         if (listOfUsers[params.userid]) {
             params.dontUpdateUserId = true;
@@ -90,7 +96,7 @@ module.exports = exports = function(app, socketCallback) {
             params.userid = (Math.random() * 1000).toString().replace('.', '');
             socket.emit('userid-already-taken', useridAlreadyTaken, params.userid);
         }
-   
+        console.log(params, sessionid);
         socket.userid = params.userid;
         peers[params.userid] = socket.id; //8.6
 
@@ -105,7 +111,20 @@ module.exports = exports = function(app, socketCallback) {
         // ids.forEach(function (sid, ind) {
         //     io.sockets.connected[sid].emit('to client message', data + "o teri oye");
         // })
-
+       
+         socket.on("joinRoom", function(data) {
+             if(listOfUsers[data.leave][uid]==data.socket){
+                 delete listOfUsers[data.leave][uid];
+                 listOfUsers[data.join][uid]=data.socket
+             }
+             socket.leave(data.leave);
+             socket.join(data.join);
+             console.log(listOfUsers);
+         })
+        socket.on("room-chat", function(data){
+            console.log("aanda a ", data);
+            socket.to(data.roomId).emit('roommessage', data.message);
+        });
         socket.on('share my id', function (data) {
             io.sockets.in(data.roomId).emit('mate id received', data.socketId);
         });
@@ -163,11 +182,8 @@ module.exports = exports = function(app, socketCallback) {
                        listOfUsers[data1.room]['socket'].push(data1.sockid);
                 }
                  }
-            }
-        
-                           
+            }                   
         });
-
         socket.on('extra-data-updated', function(extra) {
             try {
                 if (!listOfUsers[socket.userid]) return;

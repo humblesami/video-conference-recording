@@ -94,14 +94,10 @@ document.getElementById('input-text-chat').onkeyup = function(e) {
     // removing trailing/leading whitespace
     this.value = this.value.replace(/^\s+|\s+$/g, '');
     if (!this.value.length) return;
-    //connection.send(this.value);
-    //appendDIV(this.value);
-    //alert(connection.sessionid);
     
-
-    mySocket.emit('room-message',{
+    mySocket.emit('room-chat',{
         message : this.value,
-        roomId: connection.sessionid
+        roomId: $('#room-id').val()
     });
 
     this.value = '';
@@ -274,7 +270,10 @@ connection.onstream = function(event) {
             userId: event.userid,
             mySocketId: mySocket.id
         });
-
+        
+        mySocket.on('roommessage', function (data) {
+            alert(data);
+        });
         mySocket.emit('send message to connected users', {
             socketId : mySocket.id,
             roomId: connection.sessionid
@@ -475,30 +474,18 @@ $(function(){
 
     $("body").on("click", ".joining-room", function() {
         alert(connection.sessionid);
-        mySocket.emit("leaveRoom", {
-            "leaveid":$(this).text(),
-            "socket":connection.socket.id
+        $('#room-id').val($(this).text());
+        mySocket.emit("joinRoom", {
+           "leave":connection.sessionid,
+           "join": $(this).text(),
+           "socket":connection.socket.id
         });
         connection.join($(this).text());
-       $('#av-room').val(connection.sessionid);
-            connection.session = {
-            audio: true,
-            video: true,
-            data: true
-        };
-    
-        connection.mediaConstraints = {
-            audio: false,
-            video: false
-        };
-    
-        connection.sdpConstraints.mandatory = {
-            OfferToReceiveAudio: true,
-            OfferToReceiveVideo: true
-        };
-       
-        connection.dontCaptureUserMedia = true;
-     
+
+        
+
+        $('#av-room').val(connection.sessionid);
+        
     });
     RoomID = $('#room-id').val();
     $("body").on( "click", ".socketClass", function() {
