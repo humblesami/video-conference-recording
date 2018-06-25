@@ -287,7 +287,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
             alreadyConnected = true;
 
             if (connection.enableLogs) {
-                console.info('socket.io connection is opened.');
+                //console.info('socket.io connection is opened.');
             }
 
             setTimeout(function() {
@@ -680,7 +680,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
                 }
 
                 if (connection.enableLogs) {
-                    console.log('Remote peer\'s sdp:', message.sdp);
+                    //console.log('Remote peer\'s sdp:', message.sdp);
                 }
                 return;
             }
@@ -691,7 +691,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
                 }
 
                 if (connection.enableLogs) {
-                    console.log('Remote peer\'s candidate pairs:', message.candidate);
+                    //console.log('Remote peer\'s candidate pairs:', message.candidate);
                 }
                 return;
             }
@@ -4258,7 +4258,6 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
             connection.setStreamEndHandler(stream);
 
             getRMCMediaElement(stream, function(mediaElement) {
-                console.log(2222222222);
                 mediaElement.id = stream.streamid;
                 mediaElement.muted = true;
                 mediaElement.volume = 0;
@@ -4341,7 +4340,7 @@ window.RTCMultiConnection = function(roomid, forceOptions) {
         };
 
         mPeer.onNegotiationNeeded = function(message, remoteUserId, callback) {
-            console.log("one");
+            //console.log("one");
             remoteUserId = remoteUserId || message.remoteUserId;
             connectSocket(function() {
                 connection.socket.emit(connection.socketMessageEvent, 'password' in message ? message : {

@@ -47,7 +47,7 @@ module.exports = exports = function(app, socketCallback) {
 
     // to secure your socket.io usage: (via: docs/tips-tricks.md)
     // io.set('origins', 'https://domain.com');
-
+    var nuid = 1;
     function appendUser(socket) {
         var alreadyExist = listOfUsers[socket.userid];
         var extra = {};
@@ -76,8 +76,13 @@ module.exports = exports = function(app, socketCallback) {
             extra: extra || {},
             maxParticipantsAllowed: params.maxParticipantsAllowed || 1000
         };
-    console.log(listOfUsers)
-       
+        var params = socket.handshake.query.sessionid;
+        var room_id = params.replace('httpslocalhost3000demosAudio-Video-Screenhtml','');
+        var uid = 'u' + nuid;
+        nuid++;           
+        socket.join(room_id); 
+        socket.room = room_id;
+        socket.uid = uid;
     }
 
     function onConnection(socket) {
@@ -145,7 +150,13 @@ module.exports = exports = function(app, socketCallback) {
 
                 if (listOfUsers[message.sender].connectedWith[message.remoteUserId] && listOfUsers[socket.userid]) {
                     message.extra = listOfUsers[socket.userid].extra;
-                    listOfUsers[message.sender].connectedWith[message.remoteUserId].emit(socketMessageEvent, message);
+                    //var audience1 = socket.broadcast.to(socket.room);                    
+                    //var tyyyyys = listOfUsers[message.sender].connectedWith[message.remoteUserId];
+                    //tyyyyys.emit(socketMessageEvent, message);
+                    //listOfUsers[message.sender].connectedWith[message.remoteUserId].emit(socketMessageEvent, message);
+                    //listOfUsers[message.sender].connectedWith[message.remoteUserId].emit(socketMessageEvent, message);
+                    //io.sockets.in(socket.room).emit(socketMessageEvent, message);
+                    socket.broadcast.to(socket.room).emit(socketMessageEvent, message);
                 }
                 console.log(listOfUsers);
             } catch (e) {

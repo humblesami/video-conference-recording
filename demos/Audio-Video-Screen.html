@@ -178,7 +178,7 @@
             connection.videosContainer = document.getElementById('videos-container');
             connection.onstream = function(event) {
 
-                console.log("1111111111");
+                //console.log("1111111111");
                 if(document.getElementById(event.streamid)) {
                     var existing = document.getElementById(event.streamid);
                     existing.parentNode.removeChild(existing);
